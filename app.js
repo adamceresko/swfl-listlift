@@ -6,7 +6,7 @@
 
   var STYLE_FALLBACK = {
     "warm-modern": { id: "warm-modern", label: "Warm modern", line: "Walnut, linen, low seating." },
-    florida: { id: "florida", label: "Florida", line: "Light oak, rattan, airy." }
+    florida: { id: "florida", label: "Cozy Florida traditional", line: "Light oak, rattan, airy." }
   };
 
   var catalog = { listings: [], styles: [] };
@@ -42,11 +42,15 @@
   }
 
   function facts(listing) {
-    return money(listing.price) + " · " + listing.beds + " bed · " + listing.baths + " bath";
+    var parts = [money(listing.price), listing.beds + " bed", listing.baths + " bath"];
+    if (listing.sqft) parts.push(Number(listing.sqft).toLocaleString("en-US") + " sqft");
+    return parts.join(" · ");
   }
 
   function cityLine(listing) {
-    return listing.city + ", " + listing.state;
+    var line = listing.city + ", " + listing.state;
+    if (listing.zip) line += " " + listing.zip;
+    return line;
   }
 
   function normalize(s) {
@@ -93,7 +97,14 @@
     for (i = 0; i < catalog.listings.length; i += 1) {
       listing = catalog.listings[i];
       hay = normalize(
-        [listing.address, listing.city, listing.state, listing.slug, listing.address + " " + listing.city].join(" ")
+        [
+          listing.address,
+          listing.city,
+          listing.state,
+          listing.zip,
+          listing.slug,
+          listing.address + " " + listing.city
+        ].join(" ")
       );
       if (hay.indexOf(n) !== -1 || n.indexOf(normalize(listing.address)) !== -1) {
         out.push(listing);
@@ -135,7 +146,7 @@
 
   function demoImg(kind, alt) {
     return imgTag({
-      src: "img/demo-" + kind + ".jpg",
+      src: "img/demo-" + kind + ".png",
       fallback: "img/demo-" + kind + ".svg",
       alt: alt
     });
@@ -199,7 +210,7 @@
       "<main><section class=\"hero\"><div class=\"wrap\">" +
       "<p class=\"kicker\">One listing · one address · $99</p>" +
       "<h1>Every empty interior. One style. Twenty-four hours.</h1>" +
-      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Florida. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
+      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Cozy Florida traditional. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
       "<form class=\"lookup\" id=\"lookup\" action=\"/\" method=\"get\">" +
       "<label class=\"lookup-label\" for=\"address\">Listing address</label>" +
       "<div class=\"lookup-row\">" +
@@ -223,8 +234,8 @@
       demoImg("warm-modern", "Sample warm modern staging, labeled DEMO") +
       "<figcaption>Warm modern</figcaption></figure>" +
       "<figure class=\"frame badge" + (tab === "florida" ? " is-on" : "") + "\">" +
-      demoImg("florida", "Sample Florida staging, labeled DEMO") +
-      "<figcaption>Florida</figcaption></figure>" +
+      demoImg("florida", "Sample cozy Florida traditional staging, labeled DEMO") +
+      "<figcaption>Cozy Florida traditional</figcaption></figure>" +
       "</div></div>" +
       "<p class=\"caption\">Sample only. Not a real listing.</p>" +
       "</div></div></section>" +
@@ -233,7 +244,7 @@
       "<ol class=\"steps\">" +
       "<li><strong>Enter the address</strong><span>We open that listing. A link we send you skips this box.</span></li>" +
       "<li><strong>Pick one photo</strong><span>Every listing photo is there. You choose the room.</span></li>" +
-      "<li><strong>Pick a style</strong><span>Warm modern or Florida. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
+      "<li><strong>Pick a style</strong><span>Warm modern or Cozy Florida traditional. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
       "<li><strong>Pay $99</strong><span>That licenses that address. Every empty interior. Files in 24 hours. Virtually Staged on every file.</span></li>" +
       "</ol></div></section>" +
       "<section class=\"band\"><div class=\"wrap split\"><div>" +
@@ -336,6 +347,7 @@
       "<span class=\"who\">" + esc(florida.label) + "</span>" +
       "<span class=\"line\">" + esc(florida.line) + "</span></button>" +
       "</div></div>" +
+      "<p class=\"rule-line\">Same photo. You pick the look. We stage every empty interior after pay.</p>" +
       "<p class=\"rule-line\">Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</p>"
     );
   }
@@ -394,6 +406,8 @@
       "<h1>" + esc(listing.address) + "</h1>" +
       "<p class=\"facts\">" + esc(cityLine(listing)) + "</p>" +
       "<p class=\"facts\">" + esc(facts(listing)) + "</p>" +
+      (listing.agent_name ? "<p class=\"facts\">Agent: " + esc(listing.agent_name) + "</p>" : "") +
+      (listing.listing_url ? "<p class=\"facts\"><a href=\"" + esc(listing.listing_url) + "\" rel=\"noopener noreferrer\">Listing</a></p>" : "") +
       body +
       "</div></section>" +
       payBand +
