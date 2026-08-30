@@ -1,0 +1,176 @@
+{
+  "styles": [
+    {
+      "id": "warm-modern",
+      "label": "Warm modern",
+      "line": "Walnut, linen, low seating."
+    },
+    {
+      "id": "florida",
+      "label": "Cozy Florida traditional",
+      "line": "Light oak, rattan, airy."
+    }
+  ],
+  "listings": [
+    {
+      "slug": "landover-203",
+      "address": "709 Landover Cir #203",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34104",
+      "price": 365000,
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1300,
+      "listing_url": "https://www.redfin.com/FL/Naples/709-Landover-Cir-34104/unit-203/home/67585392",
+      "agent_name": "Steven Koleno",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1753041320/116/116_225056624_02.jpg" }
+      ]
+    },
+    {
+      "slug": "gulfshore-1406",
+      "address": "4751 Gulf Shore Blvd N #1406",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34103",
+      "price": 1500000,
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1614,
+      "listing_url": "https://www.redfin.com/FL/Naples/4751-Gulf-Shore-Blvd-N-34103/unit-1406/home/67546348",
+      "agent_name": "Lauren Vallozzi",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774798174/116/116_225065064_02.jpg" }
+      ]
+    },
+    {
+      "slug": "sicilia-ct",
+      "address": "7662 Sicilia Ct",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34114",
+      "price": 859000,
+      "beds": 4,
+      "baths": 3,
+      "sqft": 2667,
+      "listing_url": "https://www.redfin.com/FL/Naples/7662-Sicilia-Ct-34114/home/67410631",
+      "agent_name": "Douglas Addeo",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774794464/116/116_225070021_02.jpg" }
+      ]
+    },
+    {
+      "slug": "wildflower-cir",
+      "address": "15535 Wildflower Cir",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34119",
+      "price": 432000,
+      "beds": 3,
+      "baths": 2.5,
+      "sqft": 1582,
+      "listing_url": "https://www.redfin.com/FL/Naples/15535-Wildflower-Cir-34119/home/173824504",
+      "agent_name": "Christina Lavallie",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1773940922/116/116_225070187_02.jpg" }
+      ]
+    },
+    {
+      "slug": "saona-ct",
+      "address": "6933 Saona Ct",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34113",
+      "price": 789000,
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1563,
+      "listing_url": "https://www.redfin.com/FL/Naples/6933-Saona-Ct-34113/home/183241148",
+      "agent_name": "Thomas Hanlon",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787323264/116/116_226011236_02.jpg" }
+      ]
+    },
+    {
+      "slug": "cerva-ln",
+      "address": "5656 Cerva Ln",
+      "city": "Ave Maria",
+      "state": "FL",
+      "zip": "34142",
+      "price": 435000,
+      "beds": 3,
+      "baths": 2.5,
+      "sqft": 1924,
+      "listing_url": "https://www.redfin.com/FL/Ave-Maria/5656-Cerva-Ln-34142/home/177273702",
+      "agent_name": "Jaell Moreno",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1769500064/116/116_225071426_02.jpg" }
+      ]
+    },
+    {
+      "slug": "callista-ct",
+      "address": "2710 Callista Ct #102",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34114",
+      "price": 689900,
+      "beds": 3,
+      "baths": 3,
+      "sqft": 2237,
+      "listing_url": "https://www.redfin.com/FL/Naples/2710-Callista-Ct-34114/unit-102/home/67432200",
+      "agent_name": "Michelle Thomas",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787707736/116/116_225076937_07.jpg" }
+      ]
+    },
+    {
+      "slug": "painted-leaf-ln",
+      "address": "6035 Painted Leaf Ln",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34116",
+      "price": 899900,
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1836,
+      "listing_url": "https://www.redfin.com/FL/Naples/6035-Painted-Leaf-Ln-34116/home/67477662",
+      "agent_name": "Paul Johnson",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1781534769/116/116_225063054_02.jpg" }
+      ]
+    },
+    {
+      "slug": "41st-ave-ne",
+      "address": "2992 41st Ave NE",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34120",
+      "price": 625000,
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1500,
+      "listing_url": "https://www.redfin.com/FL/Naples/2992-41st-Ave-NE-34120/home/67483242",
+      "agent_name": "Maria Diaz",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1783547512/116/116_226002153_02.jpg" }
+      ]
+    },
+    {
+      "slug": "cherrystone-b108",
+      "address": "1200 Cherrystone Ct #B108",
+      "city": "Naples",
+      "state": "FL",
+      "zip": "34102",
+      "price": 400000,
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1100,
+      "listing_url": "https://www.redfin.com/FL/Naples/1200-Cherrystone-Ct-34102/unit-B108/home/67443985",
+      "agent_name": "Aldo Quattrocchi",
+      "photos": [
+        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1785340945/116/116_226021302_02.jpg" }
+      ]
+    }
+  ]
+}
