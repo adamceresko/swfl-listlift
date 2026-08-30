@@ -220,18 +220,20 @@ h2 { font-size: clamp(1.25rem, 2.4vw, 1.55rem); }
   display: flex;
   gap: 0;
   border: 1px solid var(--ink);
-  width: fit-content;
-  max-width: 100%;
+  width: 100%;
+  max-width: 28rem;
   margin-bottom: 0.85rem;
 }
 
 .trio-tabs button {
+  flex: 1;
+  min-width: 0;
   font: inherit;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.35rem;
   cursor: pointer;
   color: var(--ink);
   background: transparent;
