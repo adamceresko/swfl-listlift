@@ -1,0 +1,84 @@
+{
+  "styles": [
+    {
+      "id": "warm-modern",
+      "label": "Warm modern",
+      "line": "Walnut, linen, low seating."
+    },
+    {
+      "id": "florida",
+      "label": "Florida",
+      "line": "Light oak, rattan, airy."
+    }
+  ],
+  "listings": [
+    {
+      "slug": "214-osprey-ln-fort-myers",
+      "address": "214 Osprey Lane",
+      "city": "Fort Myers",
+      "state": "FL",
+      "price": 389000,
+      "beds": 3,
+      "baths": 2,
+      "photos": [
+        { "id": "living", "label": "Living", "url": "img/placeholder-living.svg" },
+        { "id": "dining", "label": "Dining", "url": "img/placeholder-dining.svg" },
+        { "id": "kitchen", "label": "Kitchen", "url": "img/placeholder-kitchen.svg" },
+        { "id": "primary", "label": "Primary bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "guest", "label": "Guest bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "lanai", "label": "Lanai", "url": "img/placeholder-lanai.svg" }
+      ]
+    },
+    {
+      "slug": "88-sandpiper-ct-unit-2-cape-coral",
+      "address": "88 Sandpiper Court Unit 2",
+      "city": "Cape Coral",
+      "state": "FL",
+      "price": 274500,
+      "beds": 2,
+      "baths": 2,
+      "photos": [
+        { "id": "living", "label": "Living", "url": "img/placeholder-living.svg" },
+        { "id": "dining", "label": "Dining", "url": "img/placeholder-dining.svg" },
+        { "id": "kitchen", "label": "Kitchen", "url": "img/placeholder-kitchen.svg" },
+        { "id": "primary", "label": "Primary bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "lanai", "label": "Lanai", "url": "img/placeholder-lanai.svg" }
+      ]
+    },
+    {
+      "slug": "441-palm-ridge-estero",
+      "address": "441 Palm Ridge",
+      "city": "Estero",
+      "state": "FL",
+      "price": 512000,
+      "beds": 4,
+      "baths": 3,
+      "photos": [
+        { "id": "living", "label": "Living", "url": "img/placeholder-living.svg" },
+        { "id": "dining", "label": "Dining", "url": "img/placeholder-dining.svg" },
+        { "id": "kitchen", "label": "Kitchen", "url": "img/placeholder-kitchen.svg" },
+        { "id": "primary", "label": "Primary bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "guest", "label": "Guest bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "office", "label": "Office", "url": "img/placeholder-dining.svg" },
+        { "id": "lanai", "label": "Lanai", "url": "img/placeholder-lanai.svg" }
+      ]
+    },
+    {
+      "slug": "19-gulf-view-dr-bonita-springs",
+      "address": "19 Gulf View Drive",
+      "city": "Bonita Springs",
+      "state": "FL",
+      "price": 629000,
+      "beds": 3,
+      "baths": 2.5,
+      "photos": [
+        { "id": "living", "label": "Living", "url": "img/placeholder-living.svg" },
+        { "id": "dining", "label": "Dining", "url": "img/placeholder-dining.svg" },
+        { "id": "kitchen", "label": "Kitchen", "url": "img/placeholder-kitchen.svg" },
+        { "id": "primary", "label": "Primary bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "guest", "label": "Guest bedroom", "url": "img/placeholder-bedroom.svg" },
+        { "id": "lanai", "label": "Lanai", "url": "img/placeholder-lanai.svg" }
+      ]
+    }
+  ]
+}
