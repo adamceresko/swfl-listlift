@@ -322,6 +322,7 @@ h2 { font-size: clamp(1.25rem, 2.4vw, 1.55rem); }
 /* Listing */
 
 .listing { padding: 1.75rem 0 2.5rem; }
+.listing h1 { max-width: none; }
 
 .back {
   display: inline-block;
