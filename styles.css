@@ -598,7 +598,25 @@ section { padding: 2rem 0; }
 }
 
 .listing-gallery figure.is-stage {
+  position: relative;
   border-color: var(--mangrove);
+}
+
+.listing-gallery figure.is-stage::after {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--mangrove);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23F6F1E8' d='M6.3 11.5 2.8 8l1.15-1.15L6.3 9.2l5.75-5.75L13.2 4.6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  box-shadow: 0 0 0 1.5px var(--paper);
+  pointer-events: none;
 }
 
 .listing-gallery figure.is-skip img {
