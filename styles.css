@@ -563,33 +563,47 @@ section { padding: 2rem 0; }
 }
 .legal .fine { font-size: 0.85rem; color: var(--muted); margin-top: 1.5rem; }
 
-/* Listing deep-link (static pages such as /l/landover-203) */
+/* Listing hero — homepage-style tabs, one frame at a time */
 
-.listing-trio {
-  display: grid;
-  gap: 0.75rem;
-  margin: 1.25rem 0 0;
+.listing-hero {
+  max-width: 32rem;
+  margin: 1.1rem 0 0;
 }
 
-.listing-trio .frame { display: block; }
+.listing-hero .trio-tabs {
+  display: flex;
+  max-width: none;
+}
 
-.listing-trio img {
+.listing-hero .trio-frames {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.listing-hero .frame {
+  display: none;
+  margin: 0;
+}
+
+.listing-hero .frame.is-on { display: block; }
+
+.listing-hero .frame img,
+.listing-hero .frame .ph {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
   background: #ddd6c8;
 }
 
-.listing-trio .badge::after { bottom: 2.1rem; }
-
-.listing-trio figcaption {
+.listing-hero figcaption {
   margin: 0.4rem 0 0;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--muted);
 }
-
-.listing-copy { margin: 1rem 0 0; }
 
 .preview-shot {
   position: relative;
@@ -804,11 +818,14 @@ section { padding: 2rem 0; }
 }
 
 @media (min-width: 800px) {
-  .listing-trio { grid-template-columns: 1fr 1fr 1fr; }
   .trio-tabs { display: none; }
   .trio-frames,
   .style-pick { grid-template-columns: 1fr 1fr 1fr; }
   .frame { display: block !important; }
+  .listing-hero .trio-tabs { display: flex; }
+  .listing-hero .trio-frames { grid-template-columns: 1fr; }
+  .listing-hero .frame { display: none !important; }
+  .listing-hero .frame.is-on { display: block !important; }
   .badge::after { bottom: 2.1rem; }
   .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .steps li { padding-left: 0; padding-top: 2.4rem; }
@@ -822,9 +839,12 @@ section { padding: 2rem 0; }
 
 @media print {
   .nav, .nav-pay, .trio-tabs, .btn, .lookup { display: none !important; }
-  .trio-frames,
-  .listing-trio { display: grid !important; grid-template-columns: 1fr 1fr 1fr; }
+  .trio-frames { display: grid !important; grid-template-columns: 1fr 1fr 1fr; }
   .frame { display: block !important; break-inside: avoid; }
+  .listing-hero .trio-tabs { display: flex !important; }
+  .listing-hero .trio-frames { grid-template-columns: 1fr !important; }
+  .listing-hero .frame { display: none !important; }
+  .listing-hero .frame.is-on { display: block !important; }
   .pay { background: var(--paper); color: var(--ink); border-top: 1px solid var(--ink); }
   .pay p { color: var(--muted); }
   img { break-inside: avoid; }

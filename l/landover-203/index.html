@@ -24,41 +24,46 @@
   <main>
     <section class="listing">
       <div class="wrap">
-        <a class="back" href="/">Back to SWFL ListLift</a>
         <p class="kicker">This listing · $99</p>
         <h1>709 Landover Cir #203</h1>
         <p class="facts">2 bed · 2 bath · 1,300 sqft · $365,000 · Naples</p>
         <p class="facts">Agent: Steven Koleno, Beycome of Florida LLC</p>
         <p class="facts"><a href="https://www.redfin.com/FL/Naples/709-Landover-Cir-34104/unit-203/home/67585392" rel="noopener noreferrer">Listing on Redfin</a></p>
-        <p class="lede listing-copy">We help unfurnished listings improve their photos. $99 for every empty interior, one style, about 1–2 hours after payment for a typical pack. Virtually Staged on every file.</p>
 
-        <div class="listing-trio" aria-label="Current photo and two staged previews">
-          <figure class="frame is-on">
-            <img src="/img/landover/empty.jpg" alt="Current living room at 709 Landover Cir #203, Naples" width="720" height="960">
-            <figcaption>Current</figcaption>
-          </figure>
-          <figure class="frame is-on">
-            <div class="preview-shot">
-              <img src="/img/landover/warm-modern.jpg" alt="Warm modern virtual staging preview of the same living room" width="1000" height="1339">
-              <div class="preview-wm" aria-hidden="true">
-                <span>SWFL ListLift · PREVIEW</span>
-                <span>SWFL ListLift · PREVIEW</span>
-                <span>SWFL ListLift · PREVIEW</span>
+        <div class="trio listing-hero" data-trio="listing">
+          <div class="trio-tabs" role="tablist" aria-label="Listing photo styles">
+            <button type="button" role="tab" aria-selected="true" data-tab="current">Current</button>
+            <button type="button" role="tab" aria-selected="false" data-tab="warm-modern">Warm modern</button>
+            <button type="button" role="tab" aria-selected="false" data-tab="florida">Florida</button>
+          </div>
+          <div class="trio-frames">
+            <figure class="frame is-on" data-frame="current">
+              <img src="/img/landover/empty.jpg" alt="Current living room at 709 Landover Cir #203, Naples" width="720" height="960">
+              <figcaption>Current</figcaption>
+            </figure>
+            <figure class="frame" data-frame="warm-modern">
+              <div class="preview-shot">
+                <img src="/img/landover/warm-modern.jpg" alt="Warm modern virtual staging preview of the same living room" width="1000" height="1339">
+                <div class="preview-wm" aria-hidden="true">
+                  <span>SWFL ListLift · PREVIEW</span>
+                  <span>SWFL ListLift · PREVIEW</span>
+                  <span>SWFL ListLift · PREVIEW</span>
+                </div>
               </div>
-            </div>
-            <figcaption>Warm modern</figcaption>
-          </figure>
-          <figure class="frame is-on">
-            <div class="preview-shot">
-              <img src="/img/landover/florida-cozy.jpg" alt="Florida cozy virtual staging preview of the same living room" width="1000" height="1339">
-              <div class="preview-wm" aria-hidden="true">
-                <span>SWFL ListLift · PREVIEW</span>
-                <span>SWFL ListLift · PREVIEW</span>
-                <span>SWFL ListLift · PREVIEW</span>
+              <figcaption>Warm modern</figcaption>
+            </figure>
+            <figure class="frame" data-frame="florida">
+              <div class="preview-shot">
+                <img src="/img/landover/florida-cozy.jpg" alt="Florida virtual staging preview of the same living room" width="1000" height="1339">
+                <div class="preview-wm" aria-hidden="true">
+                  <span>SWFL ListLift · PREVIEW</span>
+                  <span>SWFL ListLift · PREVIEW</span>
+                  <span>SWFL ListLift · PREVIEW</span>
+                </div>
               </div>
-            </div>
-            <figcaption>Florida cozy</figcaption>
-          </figure>
+              <figcaption>Florida</figcaption>
+            </figure>
+          </div>
         </div>
         <p class="caption">Previews of one photo. After you pay, every empty interior is delivered in the style you pick.</p>
 
@@ -172,6 +177,8 @@
       var pay = document.getElementById("landover-pay");
       var nav = document.getElementById("nav-pay");
       var radios = document.querySelectorAll('input[name="style"]');
+      var tabs = document.querySelectorAll('[data-trio="listing"] [data-tab]');
+      var frames = document.querySelectorAll('[data-trio="listing"] .frame');
 
       function chosenStyle() {
         var el = document.querySelector('input[name="style"]:checked');
@@ -198,6 +205,27 @@
         if (label) el.textContent = label;
       }
 
+      function showPreview(tab) {
+        var i;
+        for (i = 0; i < tabs.length; i += 1) {
+          tabs[i].setAttribute("aria-selected", tabs[i].getAttribute("data-tab") === tab ? "true" : "false");
+        }
+        for (i = 0; i < frames.length; i += 1) {
+          if (frames[i].getAttribute("data-frame") === tab) {
+            frames[i].classList.add("is-on");
+          } else {
+            frames[i].classList.remove("is-on");
+          }
+        }
+      }
+
+      function selectBuy(style) {
+        var i;
+        for (i = 0; i < radios.length; i += 1) {
+          radios[i].checked = radios[i].value === style;
+        }
+      }
+
       function sync() {
         var style = chosenStyle();
         var ready = style === "warm-modern" || style === "florida-cozy";
@@ -214,7 +242,21 @@
       if (pay) pay.addEventListener("click", blockIfWaiting);
       if (nav) nav.addEventListener("click", blockIfWaiting);
       for (var i = 0; i < radios.length; i += 1) {
-        radios[i].addEventListener("change", sync);
+        radios[i].addEventListener("change", function () {
+          var style = chosenStyle();
+          if (style === "warm-modern") showPreview("warm-modern");
+          if (style === "florida-cozy") showPreview("florida");
+          sync();
+        });
+      }
+      for (i = 0; i < tabs.length; i += 1) {
+        tabs[i].addEventListener("click", function () {
+          var tab = this.getAttribute("data-tab");
+          showPreview(tab);
+          if (tab === "warm-modern") selectBuy("warm-modern");
+          if (tab === "florida") selectBuy("florida-cozy");
+          sync();
+        });
       }
       sync();
     })();
