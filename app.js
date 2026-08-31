@@ -204,7 +204,7 @@
     return (
       "<footer class=\"footer\"><div class=\"wrap\">" +
       "SWFL ListLift · Southwest Florida · " +
-      "<a href=\"mailto:hello@swfl-listlift.com\">hello@swfl-listlift.com</a>" +
+      "<a href=\"mailto:adam@swfl-listlift.com\">adam@swfl-listlift.com</a>" +
       " · not a real estate brokerage</div></footer>"
     );
   }
@@ -215,7 +215,7 @@
     var i;
     var listing;
 
-    document.title = "SWFL ListLift — $99 for every empty interior";
+    document.title = "SWFL ListLift — we add furniture to empty listing photos";
 
     if (loadError) {
       results =
@@ -223,8 +223,8 @@
     } else if (state.matches && state.matches.length === 0) {
       results =
         "<div class=\"notice\" role=\"status\">" +
-        "<p>That address is not in this list. We do not invent a house.</p>" +
-        "<p>If this is your listing, email <a href=\"mailto:hello@swfl-listlift.com\">hello@swfl-listlift.com</a>.</p>" +
+        "<p>That address is not in our list. We only work with real listings.</p>" +
+        "<p>If this is your listing, email <a href=\"mailto:adam@swfl-listlift.com\">adam@swfl-listlift.com</a>.</p>" +
         "</div>";
     } else if (state.matches && state.matches.length > 1) {
       results = "<ul class=\"results\">";
@@ -242,9 +242,9 @@
     return (
       navHtml("#pay") +
       "<main><section class=\"hero\"><div class=\"wrap\">" +
-      "<p class=\"kicker\">One listing · one address · $99</p>" +
-      "<h1>Every empty interior. One style. One to two hours.</h1>" +
-      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Florida cozy. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
+      "<p class=\"kicker\">One listing. $99.</p>" +
+      "<h1>We add furniture to empty listing photos.</h1>" +
+      "<p class=\"lede\">Type the address. Click the styles. Pay $99. Files in one to two hours. Every file says Virtually Staged.</p>" +
       "<form class=\"lookup\" id=\"lookup\" action=\"/\" method=\"get\">" +
       "<label class=\"lookup-label\" for=\"address\">Listing address</label>" +
       "<div class=\"lookup-row\">" +
@@ -255,6 +255,7 @@
       "<div class=\"sample\">" +
       "<p class=\"sample-kicker\">Sample</p>" +
       "<div class=\"trio\" data-trio=\"home\">" +
+      "<p class=\"trio-hint\">Click Current, Warm modern, or Florida cozy to see the same photo.</p>" +
       "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Sample styles\">" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "empty") + "\" data-tab=\"empty\">Current</button>" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
@@ -276,24 +277,24 @@
       "<section class=\"band\"><div class=\"wrap\">" +
       "<h2>How it works</h2>" +
       "<ol class=\"steps\">" +
-      "<li><strong>Enter the address</strong><span>We open that listing. A link we send you skips this box.</span></li>" +
-      "<li><strong>Pick one photo</strong><span>Every listing photo is there. You choose the room.</span></li>" +
-      "<li><strong>Pick a style</strong><span>Warm modern or Florida cozy. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
-      "<li><strong>Pay $99</strong><span>That licenses that address. Every empty interior. Files in 1–2 hours. Virtually Staged on every file.</span></li>" +
+      "<li><strong>Type the address</strong><span>We open that listing. A link we send you skips this box.</span></li>" +
+      "<li><strong>Click the styles on the photo</strong><span>Current, Warm modern, and Florida cozy show you the same photo three ways.</span></li>" +
+      "<li><strong>Choose a style and pay $99</strong><span>Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
+      "<li><strong>Get your files in 1–2 hours</strong><span>We add furniture to every empty room in that listing. Every file says Virtually Staged.</span></li>" +
       "</ol></div></section>" +
       "<section class=\"band\"><div class=\"wrap split\"><div>" +
       "<h2>What you get</h2><ul>" +
-      "<li>Furniture and decor on your existing photos</li>" +
-      "<li>Every empty interior on that listing</li>" +
-      "<li>One style across the unit</li>" +
+      "<li>Furniture and decor on your own photos</li>" +
+      "<li>Every empty room in that listing</li>" +
+      "<li>One style for the whole house</li>" +
       "<li>Virtually Staged on every file</li>" +
-      "<li>Use on MLS, flyers, and social for that address</li>" +
-      "<li>One free scale revision</li>" +
+      "<li>Use it for that address on MLS, flyers, and social</li>" +
+      "<li>One free fix if the furniture is the wrong size</li>" +
       "</ul></div><div>" +
       "<h2>What you don’t</h2><ul>" +
       "<li>Walls, windows, floors, views, and the camera do not move</li>" +
-      "<li>No pools, no added views, no construction that is not there</li>" +
-      "<li>Not a license for other addresses</li>" +
+      "<li>No pools, no new views, no construction that is not there</li>" +
+      "<li>Not for other addresses</li>" +
       "<li>Not a brokerage. We are not your agent.</li>" +
       "</ul></div></div></section>" +
       "<section class=\"band\"><div class=\"wrap photo-rule\">" +
@@ -302,12 +303,12 @@
       "</div></section>" +
       "<section class=\"band\"><div class=\"wrap terms-short\">" +
       "<h2>Terms</h2>" +
-      "<p>Pay $99 is your signature. That is an address-only license. Virtually Staged stays on every file. No refund after files are sent. One free revision if scale is wrong. Florida.</p>" +
+      "<p>You pay $99. That is how you agree. The files are for that one address. Every file says Virtually Staged. No refund after we send the files. One free fix if the furniture is the wrong size. Florida.</p>" +
       "<p><a href=\"terms.html\">Full order terms</a></p>" +
       "</div></section>" +
       "<section class=\"pay\" id=\"pay\"><div class=\"wrap\">" +
       "<h2>Pay $99</h2>" +
-      "<p>Start with the address above. Payment is the signature. Files in 1–2 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
+      "<p>Start with the address above. Pay $99. Files in 1–2 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
       "<a class=\"btn\" href=\"" + esc(STRIPE_LINK) + "\" rel=\"noopener noreferrer\">Pay $99</a>" +
       "</div></section></main>" +
       footerHtml()
@@ -329,8 +330,8 @@
       navHtml("/#pay") +
       "<main class=\"listing\"><div class=\"wrap\">" +
       "<a class=\"back\" href=\"/\">Back to address</a>" +
-      "<h1>That address is not in this list.</h1>" +
-      "<p class=\"lede\">We do not invent a house. If this is your listing, email <a href=\"mailto:hello@swfl-listlift.com\">hello@swfl-listlift.com</a>.</p>" +
+      "<h1>That address is not in our list.</h1>" +
+      "<p class=\"lede\">We only work with real listings. If this is your listing, email <a href=\"mailto:adam@swfl-listlift.com\">adam@swfl-listlift.com</a>.</p>" +
       "</div></main>" +
       footerHtml()
     );
@@ -343,8 +344,8 @@
     var stage;
     if (!listing.gallery || !listing.gallery.length) return "";
     html =
-      "<p class=\"ask\">Listing photos</p>" +
-      "<p class=\"caption gallery-key\">Green = we'll stage.</p>" +
+      "<p class=\"ask\">All listing photos</p>" +
+      "<p class=\"caption gallery-key\">Green means we'll add furniture.</p>" +
       "<div class=\"listing-gallery\" aria-label=\"Listing photos\">";
     for (i = 0; i < listing.gallery.length; i += 1) {
       item = listing.gallery[i];
@@ -371,8 +372,8 @@
     var readyPay = styleId === "warm-modern" || styleId === "florida-cozy";
     var payHref = readyPay ? stripeHref(listing, styleId) : "";
     var payLabel = readyPay
-      ? "Pay $99 — licenses " + listing.address
-      : "Pick a style to pay $99";
+      ? "Pay $99 for this house"
+      : "Choose a style, then pay $99";
     var navExtra = " id=\"nav-pay\"" + (readyPay ? "" : " aria-disabled=\"true\"");
     document.title = listing.address + " — SWFL ListLift";
 
@@ -382,7 +383,7 @@
       navHtml(payHref, "Pay $99", navExtra) +
       "<main>" +
       "<section class=\"listing\"><div class=\"wrap\">" +
-      "<p class=\"kicker\">This listing · $99</p>" +
+      "<p class=\"kicker\">This listing. $99.</p>" +
       "<h1>" + esc(listing.address) + "</h1>" +
       "<p class=\"facts\">" + esc(facts(listing)) + " · " + esc(listing.city) + "</p>" +
       (listing.agent_name ? "<p class=\"facts\">Agent: " + esc(listing.agent_name) + "</p>" : "") +
@@ -390,10 +391,11 @@
         ? "<p class=\"facts\"><a href=\"" + esc(listing.listing_url) + "\" rel=\"noopener noreferrer\">Listing on Redfin</a></p>"
         : "") +
       "<div class=\"trio listing-hero\" data-trio=\"listing\">" +
+      "<p class=\"trio-hint\">Click Current, Warm modern, or Florida cozy to see the same photo.</p>" +
       "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Listing photo styles\">" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "current") + "\" data-tab=\"current\">Current</button>" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida</button>" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida cozy</button>" +
       "</div>" +
       "<div class=\"trio-frames\">" +
       "<figure class=\"frame" + (tab === "current" ? " is-on" : "") + "\" data-frame=\"current\">" +
@@ -414,15 +416,15 @@
       imgTag({
         src: styleSrc(photo, "florida-cozy"),
         fallback: current,
-        alt: "Florida preview of the same " + room.toLowerCase() + " photo"
+        alt: "Florida cozy preview of the same " + room.toLowerCase() + " photo"
       }) +
       previewMark() +
       "</div>" +
-      "<figcaption>Florida</figcaption></figure>" +
+      "<figcaption>Florida cozy</figcaption></figure>" +
       "</div></div>" +
-      "<p class=\"caption\">Previews of one photo. After you pay, every empty interior is delivered in the style you pick.</p>" +
+      "<p class=\"caption\">This is one photo. After you pay, we stage the rest of the empty rooms in the style you pick.</p>" +
       "<div class=\"buy-block\">" +
-      "<p class=\"ask\" id=\"style-label\">Style</p>" +
+      "<p class=\"ask\" id=\"style-label\">Choose a style</p>" +
       "<div class=\"style-toggle\" role=\"radiogroup\" aria-labelledby=\"style-label\">" +
       "<label class=\"style-toggle-btn\">" +
       "<input type=\"radio\" name=\"style\" value=\"warm-modern\"" +
@@ -433,7 +435,7 @@
       (styleId === "florida-cozy" ? " checked" : "") + ">" +
       "<span>Florida cozy</span></label>" +
       "</div>" +
-      "<p class=\"rule-line\">Locked until you pick a style. Does not go live on MLS by itself.</p>" +
+      "<p class=\"rule-line\">We'll stage the empty rooms. $99 for this house.</p>" +
       "<a class=\"buy-btn" + (readyPay ? "" : " is-wait") + "\" id=\"listing-pay\"" +
       (readyPay ? " href=\"" + esc(payHref) + "\" rel=\"noopener noreferrer\"" : " aria-disabled=\"true\"") +
       ">" + esc(payLabel) + "</a>" +
@@ -505,7 +507,7 @@
       var ready = style === "warm-modern" || style === "florida-cozy";
       var href = ready ? stripeHref(listing, style) : "";
       state.styleId = ready ? style : null;
-      setPayLink(pay, ready, href, ready ? "Pay $99 — licenses " + address : "Pick a style to pay $99");
+      setPayLink(pay, ready, href, ready ? "Pay $99 for this house" : "Choose a style, then pay $99");
       setPayLink(nav, ready, href, "Pay $99");
     }
 
@@ -564,8 +566,6 @@
           state.homeTab = tab;
         } else if (trio && trio.getAttribute("data-trio") === "listing") {
           state.styleTab = tab;
-          if (tab === "warm-modern") state.styleId = "warm-modern";
-          if (tab === "florida") state.styleId = "florida-cozy";
         } else {
           state.styleTab = tab;
         }

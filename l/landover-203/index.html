@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>709 Landover Cir #203 — SWFL ListLift</title>
-  <meta name="description" content="Virtual staging for 709 Landover Cir #203, Naples. $99 licenses this address. Warm modern or Florida cozy. Empty interiors — living, bedrooms, and dining.">
+  <meta name="description" content="Virtual staging for 709 Landover Cir #203, Naples. $99 for this house. Warm modern or Florida cozy. We add furniture to the empty rooms — living, bedrooms, and dining.">
   <meta property="og:title" content="709 Landover Cir #203 — SWFL ListLift">
-  <meta property="og:description" content="$99 licenses this Naples listing. We'll stage the empty interiors — living, bedrooms, and dining.">
+  <meta property="og:description" content="$99 for this Naples house. We add furniture to the empty rooms — living, bedrooms, and dining.">
   <meta property="og:url" content="https://swfl-listlift.com/l/landover-203">
   <meta property="og:image" content="https://swfl-listlift.com/img/landover/empty.jpg">
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
@@ -24,17 +24,18 @@
   <main>
     <section class="listing">
       <div class="wrap">
-        <p class="kicker">This listing · $99</p>
+        <p class="kicker">This listing. $99.</p>
         <h1>709 Landover Cir #203</h1>
         <p class="facts">2 bed · 2 bath · 1,300 sqft · $365,000 · Naples</p>
         <p class="facts">Agent: Steven Koleno, Beycome of Florida LLC</p>
         <p class="facts"><a href="https://www.redfin.com/FL/Naples/709-Landover-Cir-34104/unit-203/home/67585392" rel="noopener noreferrer">Listing on Redfin</a></p>
 
         <div class="trio listing-hero" data-trio="listing">
+          <p class="trio-hint">Click Current, Warm modern, or Florida cozy to see the same photo.</p>
           <div class="trio-tabs" role="tablist" aria-label="Listing photo styles">
             <button type="button" role="tab" aria-selected="true" data-tab="current">Current</button>
             <button type="button" role="tab" aria-selected="false" data-tab="warm-modern">Warm modern</button>
-            <button type="button" role="tab" aria-selected="false" data-tab="florida">Florida</button>
+            <button type="button" role="tab" aria-selected="false" data-tab="florida">Florida cozy</button>
           </div>
           <div class="trio-frames">
             <figure class="frame is-on" data-frame="current">
@@ -54,21 +55,21 @@
             </figure>
             <figure class="frame" data-frame="florida">
               <div class="preview-shot">
-                <img src="/img/landover/florida-cozy.jpg" alt="Florida virtual staging preview of the same living room" width="1000" height="1339">
+                <img src="/img/landover/florida-cozy.jpg" alt="Florida cozy virtual staging preview of the same living room" width="1000" height="1339">
                 <div class="preview-wm" aria-hidden="true">
                   <span>SWFL ListLift · PREVIEW</span>
                   <span>SWFL ListLift · PREVIEW</span>
                   <span>SWFL ListLift · PREVIEW</span>
                 </div>
               </div>
-              <figcaption>Florida</figcaption>
+              <figcaption>Florida cozy</figcaption>
             </figure>
           </div>
         </div>
-        <p class="caption">Previews of one photo. After you pay, every empty interior is delivered in the style you pick.</p>
+        <p class="caption">This is one photo. After you pay, we stage the rest of the empty rooms in the style you pick.</p>
 
         <div class="buy-block">
-          <p class="ask" id="style-label">Style</p>
+          <p class="ask" id="style-label">Choose a style</p>
           <div class="style-toggle" role="radiogroup" aria-labelledby="style-label">
             <label class="style-toggle-btn">
               <input type="radio" name="style" value="warm-modern">
@@ -79,12 +80,12 @@
               <span>Florida cozy</span>
             </label>
           </div>
-          <p class="rule-line">We'll stage 9 empty interiors. $99 licenses this address.</p>
-          <a class="buy-btn is-wait" id="landover-pay" aria-disabled="true">Pick a style to pay $99</a>
+          <p class="rule-line">We'll stage 9 empty rooms. $99 for this house.</p>
+          <a class="buy-btn is-wait" id="landover-pay" aria-disabled="true">Choose a style, then pay $99</a>
         </div>
 
-        <p class="ask">Listing photos</p>
-        <p class="caption gallery-key">Green = we'll stage.</p>
+        <p class="ask">All listing photos</p>
+        <p class="caption gallery-key">Green means we'll add furniture.</p>
         <div class="listing-gallery" aria-label="All 18 listing photos">
           <figure class="is-skip">
             <img src="/img/landover/gallery/01.jpg" alt="Building exterior" width="640" height="480">
@@ -219,17 +220,10 @@
         }
       }
 
-      function selectBuy(style) {
-        var i;
-        for (i = 0; i < radios.length; i += 1) {
-          radios[i].checked = radios[i].value === style;
-        }
-      }
-
       function sync() {
         var style = chosenStyle();
         var ready = style === "warm-modern" || style === "florida-cozy";
-        setPay(pay, ready, ready ? "Pay $99 — licenses 709 Landover Cir #203" : "Pick a style to pay $99");
+        setPay(pay, ready, ready ? "Pay $99 for this house" : "Choose a style, then pay $99");
         setPay(nav, ready, "Pay $99");
       }
 
@@ -251,11 +245,7 @@
       }
       for (i = 0; i < tabs.length; i += 1) {
         tabs[i].addEventListener("click", function () {
-          var tab = this.getAttribute("data-tab");
-          showPreview(tab);
-          if (tab === "warm-modern") selectBuy("warm-modern");
-          if (tab === "florida") selectBuy("florida-cozy");
-          sync();
+          showPreview(this.getAttribute("data-tab"));
         });
       }
       sync();
