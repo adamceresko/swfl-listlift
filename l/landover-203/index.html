@@ -17,7 +17,7 @@
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="/">SWFL ListLift</a>
-      <a class="nav-pay" id="nav-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99</a>
+      <a class="nav-pay is-wait" id="nav-pay" aria-disabled="true">Pay $99</a>
     </div>
   </header>
 
@@ -51,7 +51,7 @@
           <p class="ask" id="style-label">Style</p>
           <div class="style-toggle" role="radiogroup" aria-labelledby="style-label">
             <label class="style-toggle-btn">
-              <input type="radio" name="style" value="warm-modern" checked>
+              <input type="radio" name="style" value="warm-modern">
               <span>Warm modern</span>
             </label>
             <label class="style-toggle-btn">
@@ -60,7 +60,7 @@
             </label>
           </div>
           <p class="rule-line">We'll stage 9 empty interiors. $99 licenses this address.</p>
-          <a class="buy-btn" id="landover-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99 — licenses 709 Landover Cir #203</a>
+          <a class="buy-btn is-wait" id="landover-pay" aria-disabled="true">Pick a style to pay $99</a>
         </div>
 
         <p class="ask">Listing photos</p>
@@ -158,17 +158,46 @@
       var nav = document.getElementById("nav-pay");
       var radios = document.querySelectorAll('input[name="style"]');
 
-      function hrefFor() {
-        var join = STRIPE.indexOf("?") >= 0 ? "&" : "?";
-        return STRIPE + join + "client_reference_id=landover-203";
+      function chosenStyle() {
+        var el = document.querySelector('input[name="style"]:checked');
+        return el ? el.value : "";
+      }
+
+      function hrefFor(style) {
+        var ref = "landover-203";
+        if (style) ref += ":" + style;
+        return STRIPE + "?client_reference_id=" + encodeURIComponent(ref);
+      }
+
+      function setPay(el, enabled, label) {
+        if (!el) return;
+        if (enabled) {
+          el.classList.remove("is-wait");
+          el.removeAttribute("aria-disabled");
+          el.setAttribute("href", hrefFor(chosenStyle()));
+        } else {
+          el.classList.add("is-wait");
+          el.setAttribute("aria-disabled", "true");
+          el.removeAttribute("href");
+        }
+        if (label) el.textContent = label;
       }
 
       function sync() {
-        var href = hrefFor();
-        if (pay) pay.setAttribute("href", href);
-        if (nav) nav.setAttribute("href", href);
+        var style = chosenStyle();
+        var ready = style === "warm-modern" || style === "florida-cozy";
+        setPay(pay, ready, ready ? "Pay $99 — licenses 709 Landover Cir #203" : "Pick a style to pay $99");
+        setPay(nav, ready, "Pay $99");
       }
 
+      function blockIfWaiting(event) {
+        if (this.getAttribute("aria-disabled") === "true") {
+          event.preventDefault();
+        }
+      }
+
+      if (pay) pay.addEventListener("click", blockIfWaiting);
+      if (nav) nav.addEventListener("click", blockIfWaiting);
       for (var i = 0; i < radios.length; i += 1) {
         radios[i].addEventListener("change", sync);
       }
