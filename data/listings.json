@@ -7,7 +7,7 @@
     },
     {
       "id": "florida",
-      "label": "Cozy Florida traditional",
+      "label": "Florida cozy",
       "line": "Light oak, rattan, airy."
     }
   ],
@@ -23,9 +23,37 @@
       "baths": 2,
       "sqft": 1300,
       "listing_url": "https://www.redfin.com/FL/Naples/709-Landover-Cir-34104/unit-203/home/67585392",
-      "agent_name": "Steven Koleno",
+      "agent_name": "Steven Koleno, Beycome of Florida LLC",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1753041320/116/116_225056624_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "img/landover/empty.jpg",
+          "styles": {
+            "warm-modern": "img/landover/warm-modern.jpg",
+            "florida": "img/landover/florida-cozy.jpg"
+          }
+        }
+      ],
+      "gallery": [
+        { "url": "img/landover/gallery/01.jpg", "label": "Exterior", "stage": false },
+        { "url": "img/landover/gallery/02.jpg", "label": "Exterior", "stage": false },
+        { "url": "img/landover/gallery/03.jpg", "label": "Hallway", "stage": true },
+        { "url": "img/landover/gallery/04.jpg", "label": "Living", "stage": true },
+        { "url": "img/landover/gallery/05.jpg", "label": "Kitchen", "stage": true },
+        { "url": "img/landover/gallery/06.jpg", "label": "Lanai", "stage": true },
+        { "url": "img/landover/gallery/07.jpg", "label": "Dining", "stage": true },
+        { "url": "img/landover/gallery/08.jpg", "label": "Hallway", "stage": true },
+        { "url": "img/landover/gallery/09.jpg", "label": "Primary", "stage": true },
+        { "url": "img/landover/gallery/10.jpg", "label": "Primary, other view", "stage": true },
+        { "url": "img/landover/gallery/11.jpg", "label": "Bath", "stage": false },
+        { "url": "img/landover/gallery/12.jpg", "label": "Bath", "stage": false },
+        { "url": "img/landover/gallery/13.jpg", "label": "Bedroom 2", "stage": true },
+        { "url": "img/landover/gallery/14.jpg", "label": "Bath", "stage": false },
+        { "url": "img/landover/gallery/15.jpg", "label": "Bath", "stage": false },
+        { "url": "img/landover/gallery/16.jpg", "label": "Laundry", "stage": false },
+        { "url": "img/landover/gallery/17.jpg", "label": "Pool", "stage": false },
+        { "url": "img/landover/gallery/18.jpg", "label": "Pool", "stage": false }
       ]
     },
     {
@@ -41,7 +69,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/4751-Gulf-Shore-Blvd-N-34103/unit-1406/home/67546348",
       "agent_name": "Lauren Vallozzi",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774798174/116/116_225065064_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774798174/116/116_225065064_06.jpg",
+          "styles": {
+            "warm-modern": "img/gulfshore-1406/warm-modern.jpg",
+            "florida": "img/gulfshore-1406/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -57,7 +93,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/7662-Sicilia-Ct-34114/home/67410631",
       "agent_name": "Douglas Addeo",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774794464/116/116_225070021_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774794464/116/116_225070021_05.jpg",
+          "styles": {
+            "warm-modern": "img/sicilia-ct/warm-modern.jpg",
+            "florida": "img/sicilia-ct/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -73,7 +117,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/15535-Wildflower-Cir-34119/home/173824504",
       "agent_name": "Christina Lavallie",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1773940922/116/116_225070187_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1773940922/116/116_225070187_02.jpg",
+          "styles": {
+            "warm-modern": "img/wildflower-cir/warm-modern.jpg",
+            "florida": "img/wildflower-cir/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -89,7 +141,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/6933-Saona-Ct-34113/home/183241148",
       "agent_name": "Thomas Hanlon",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787323264/116/116_226011236_02.jpg" }
+        {
+          "id": "living",
+          "label": "Kitchen",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787323264/116/116_226011236_09.jpg",
+          "styles": {
+            "warm-modern": "img/saona-ct/warm-modern.jpg",
+            "florida": "img/saona-ct/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -105,7 +165,15 @@
       "listing_url": "https://www.redfin.com/FL/Ave-Maria/5656-Cerva-Ln-34142/home/177273702",
       "agent_name": "Jaell Moreno",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1769500064/116/116_225071426_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1769500064/116/116_225071426_02.jpg",
+          "styles": {
+            "warm-modern": "img/cerva-ln/warm-modern.jpg",
+            "florida": "img/cerva-ln/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -121,7 +189,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/2710-Callista-Ct-34114/unit-102/home/67432200",
       "agent_name": "Michelle Thomas",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787707736/116/116_225076937_07.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787707736/116/116_225076937_05.jpg",
+          "styles": {
+            "warm-modern": "img/callista-ct/warm-modern.jpg",
+            "florida": "img/callista-ct/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -137,7 +213,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/6035-Painted-Leaf-Ln-34116/home/67477662",
       "agent_name": "Paul Johnson",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1781534769/116/116_225063054_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1781534769/116/116_225063054_02.jpg",
+          "styles": {
+            "warm-modern": "img/painted-leaf-ln/warm-modern.jpg",
+            "florida": "img/painted-leaf-ln/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -153,7 +237,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/2992-41st-Ave-NE-34120/home/67483242",
       "agent_name": "Maria Diaz",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1783547512/116/116_226002153_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1783547512/116/116_226002153_02.jpg",
+          "styles": {
+            "warm-modern": "img/41st-ave-ne/warm-modern.jpg",
+            "florida": "img/41st-ave-ne/florida-cozy.jpg"
+          }
+        }
       ]
     },
     {
@@ -169,7 +261,15 @@
       "listing_url": "https://www.redfin.com/FL/Naples/1200-Cherrystone-Ct-34102/unit-B108/home/67443985",
       "agent_name": "Aldo Quattrocchi",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1785340945/116/116_226021302_02.jpg" }
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "img/cherrystone-b108/empty.jpg",
+          "styles": {
+            "warm-modern": "img/cherrystone-b108/warm-modern.jpg",
+            "florida": "img/cherrystone-b108/florida-cozy.jpg"
+          }
+        }
       ]
     }
   ]

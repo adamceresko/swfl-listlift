@@ -2,11 +2,12 @@
   "use strict";
 
   var STRIPE_LINK = "https://buy.stripe.com/8x2bIVa10aA3aM6dJp0RG00";
+  var LANDOVER_STRIPE = "https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01";
   var DATA_URL = "data/listings.json";
 
   var STYLE_FALLBACK = {
     "warm-modern": { id: "warm-modern", label: "Warm modern", line: "Walnut, linen, low seating." },
-    florida: { id: "florida", label: "Cozy Florida traditional", line: "Light oak, rattan, airy." }
+    florida: { id: "florida", label: "Florida cozy", line: "Light oak, rattan, airy." }
   };
 
   var catalog = { listings: [], styles: [] };
@@ -114,14 +115,36 @@
   }
 
   function stripeHref(listing, styleId) {
-    var url = new URL(STRIPE_LINK);
-    if (listing && listing.slug) {
-      url.searchParams.set(
-        "client_reference_id",
-        styleId ? listing.slug + ":" + styleId : listing.slug
-      );
-    }
+    var base = listing && listing.slug === "landover-203" ? LANDOVER_STRIPE : STRIPE_LINK;
+    var url = new URL(base);
+    var ref = listing && listing.slug ? listing.slug : "";
+    var sid = styleId === "florida" ? "florida-cozy" : styleId;
+    if (sid) ref += ":" + sid;
+    if (ref) url.searchParams.set("client_reference_id", ref);
     return url.toString();
+  }
+
+  function livingPhoto(listing) {
+    return photoOf(listing, "living") || (listing && listing.photos && listing.photos[0]) || null;
+  }
+
+  function styleKey(styleId) {
+    if (styleId === "florida-cozy" || styleId === "florida") return "florida";
+    return styleId;
+  }
+
+  function styleSrc(photo, styleId) {
+    return styleUrl(photo, styleKey(styleId));
+  }
+
+  function previewMark() {
+    return (
+      "<div class=\"preview-wm\" aria-hidden=\"true\">" +
+      "<span>SWFL ListLift · PREVIEW</span>" +
+      "<span>SWFL ListLift · PREVIEW</span>" +
+      "<span>SWFL ListLift · PREVIEW</span>" +
+      "</div>"
+    );
   }
 
   function photoUrl(photo) {
@@ -157,16 +180,27 @@
   }
 
   function navHtml(payHref, payLabel, extra) {
+    var wait = !payHref;
+    var hrefAttr = payHref ? " href=\"" + esc(payHref) + "\"" : "";
     return (
       "<header class=\"nav\"><div class=\"wrap nav-inner\">" +
       "<a class=\"brand\" href=\"/\">SWFL ListLift</a>" +
-      "<a class=\"nav-pay\" href=\"" + esc(payHref || "/#pay") + "\"" + (extra || "") + ">" +
+      "<a class=\"nav-pay" + (wait ? " is-wait" : "") + "\"" + hrefAttr + (extra || "") + ">" +
       esc(payLabel || "Pay $99") +
       "</a></div></header>"
     );
   }
 
-  function footerHtml() {
+  function footerHtml(forListing) {
+    if (forListing) {
+      return (
+        "<footer class=\"footer\"><div class=\"wrap\">" +
+        "SWFL ListLift · not a brokerage · Virtually Staged · " +
+        "<a href=\"terms.html\">Order terms</a> · " +
+        "<a href=\"mailto:adam@swfl-listlift.com\">adam@swfl-listlift.com</a>" +
+        "</div></footer>"
+      );
+    }
     return (
       "<footer class=\"footer\"><div class=\"wrap\">" +
       "SWFL ListLift · Southwest Florida · " +
@@ -209,8 +243,8 @@
       navHtml("#pay") +
       "<main><section class=\"hero\"><div class=\"wrap\">" +
       "<p class=\"kicker\">One listing · one address · $99</p>" +
-      "<h1>Every empty interior. One style. Twenty-four hours.</h1>" +
-      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Cozy Florida traditional. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
+      "<h1>Every empty interior. One style. One to two hours.</h1>" +
+      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Florida cozy. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
       "<form class=\"lookup\" id=\"lookup\" action=\"/\" method=\"get\">" +
       "<label class=\"lookup-label\" for=\"address\">Listing address</label>" +
       "<div class=\"lookup-row\">" +
@@ -224,7 +258,7 @@
       "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Sample styles\">" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "empty") + "\" data-tab=\"empty\">Current</button>" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida</button>" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida cozy</button>" +
       "</div>" +
       "<div class=\"trio-frames\">" +
       "<figure class=\"frame" + (tab === "empty" ? " is-on" : "") + "\">" +
@@ -234,18 +268,18 @@
       demoImg("warm-modern", "Sample warm modern staging, labeled DEMO") +
       "<figcaption>Warm modern</figcaption></figure>" +
       "<figure class=\"frame badge" + (tab === "florida" ? " is-on" : "") + "\">" +
-      demoImg("florida", "Sample cozy Florida traditional staging, labeled DEMO") +
-      "<figcaption>Cozy Florida traditional</figcaption></figure>" +
+      demoImg("florida", "Sample Florida cozy staging, labeled DEMO") +
+      "<figcaption>Florida cozy</figcaption></figure>" +
       "</div></div>" +
-      "<p class=\"caption\">Sample only. Not a real listing.</p>" +
+      "<p class=\"caption\">Example room — not a live listing</p>" +
       "</div></div></section>" +
       "<section class=\"band\"><div class=\"wrap\">" +
       "<h2>How it works</h2>" +
       "<ol class=\"steps\">" +
       "<li><strong>Enter the address</strong><span>We open that listing. A link we send you skips this box.</span></li>" +
       "<li><strong>Pick one photo</strong><span>Every listing photo is there. You choose the room.</span></li>" +
-      "<li><strong>Pick a style</strong><span>Warm modern or Cozy Florida traditional. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
-      "<li><strong>Pay $99</strong><span>That licenses that address. Every empty interior. Files in 24 hours. Virtually Staged on every file.</span></li>" +
+      "<li><strong>Pick a style</strong><span>Warm modern or Florida cozy. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
+      "<li><strong>Pay $99</strong><span>That licenses that address. Every empty interior. Files in 1–2 hours. Virtually Staged on every file.</span></li>" +
       "</ol></div></section>" +
       "<section class=\"band\"><div class=\"wrap split\"><div>" +
       "<h2>What you get</h2><ul>" +
@@ -273,7 +307,8 @@
       "</div></section>" +
       "<section class=\"pay\" id=\"pay\"><div class=\"wrap\">" +
       "<h2>Pay $99</h2>" +
-      "<p>Start with the address above. Payment is the signature. Files in 24 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
+      "<p>Start with the address above. Payment is the signature. Files in 1–2 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
+      "<a class=\"btn\" href=\"" + esc(STRIPE_LINK) + "\" rel=\"noopener noreferrer\">Pay $99</a>" +
       "</div></section></main>" +
       footerHtml()
     );
@@ -301,118 +336,105 @@
     );
   }
 
-  function renderGallery(listing) {
-    var html = "";
+  function renderListingGallery(listing) {
+    var html;
     var i;
-    var photo;
-    html += "<p class=\"ask\">Pick one photo.</p><div class=\"thumbs\">";
-    for (i = 0; i < listing.photos.length; i += 1) {
-      photo = listing.photos[i];
+    var item;
+    var stage;
+    if (!listing.gallery || !listing.gallery.length) return "";
+    html =
+      "<p class=\"ask\">Listing photos</p>" +
+      "<p class=\"caption gallery-key\">Green = we'll stage.</p>" +
+      "<div class=\"listing-gallery\" aria-label=\"Listing photos\">";
+    for (i = 0; i < listing.gallery.length; i += 1) {
+      item = listing.gallery[i];
+      stage = item.stage === true;
       html +=
-        "<button type=\"button\" class=\"thumb\" data-photo=\"" + esc(photo.id) + "\">" +
-        listingImg(photo, photo.label + " at " + listing.address) +
-        "<span class=\"who\">" + esc(photo.label) + "</span></button>";
+        "<figure class=\"" + (stage ? "is-stage" : "is-skip") + "\">" +
+        imgTag({
+          src: item.url,
+          alt: (item.label || "Listing photo") + " at " + listing.address
+        }) +
+        "<figcaption><span class=\"who\">" + esc(item.label || "Photo") + "</span>" +
+        "<span class=\"mark\">" + (stage ? "We'll stage" : "As-is") + "</span></figcaption>" +
+        "</figure>";
     }
     html += "</div>";
     return html;
   }
 
-  function renderStyle(listing, photo) {
-    var tab = state.styleTab;
-    var warm = styleMeta("warm-modern");
-    var florida = styleMeta("florida");
-    var currentSrc = photoUrl(photo);
-    var warmSrc = styleUrl(photo, "warm-modern");
-    var floridaSrc = styleUrl(photo, "florida");
-
-    return (
-      "<button type=\"button\" class=\"back\" data-step=\"gallery\">Back to photos</button>" +
-      "<p class=\"ask\">Pick a style for this room.</p>" +
-      "<div class=\"trio\" data-trio=\"style\">" +
-      "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Room style\">" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "current") + "\" data-tab=\"current\">Current</button>" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida</button>" +
-      "</div>" +
-      "<div class=\"style-pick\">" +
-      "<figure class=\"style-card is-ref frame" + (tab === "current" ? " is-on" : "") + "\">" +
-      imgTag({ src: currentSrc, alt: "Current photo, " + photo.label }) +
-      "<figcaption class=\"who\">Current</figcaption></figure>" +
-      "<button type=\"button\" class=\"style-card frame" + (tab === "warm-modern" ? " is-on" : "") + "\" data-style=\"warm-modern\">" +
-      imgTag({ src: warmSrc, alt: "Warm modern look for " + photo.label }) +
-      "<span class=\"who\">" + esc(warm.label) + "</span>" +
-      "<span class=\"line\">" + esc(warm.line) + "</span></button>" +
-      "<button type=\"button\" class=\"style-card frame" + (tab === "florida" ? " is-on" : "") + "\" data-style=\"florida\">" +
-      imgTag({ src: floridaSrc, alt: "Florida look for " + photo.label }) +
-      "<span class=\"who\">" + esc(florida.label) + "</span>" +
-      "<span class=\"line\">" + esc(florida.line) + "</span></button>" +
-      "</div></div>" +
-      "<p class=\"rule-line\">Same photo. You pick the look. We stage every empty interior after pay.</p>" +
-      "<p class=\"rule-line\">Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</p>"
-    );
-  }
-
-  function renderConfirm(listing) {
-    var style = styleMeta(state.styleId);
-    return (
-      "<button type=\"button\" class=\"back\" data-step=\"style\">Back to styles</button>" +
-      "<div class=\"confirm-box\">" +
-      "<p class=\"tag\">" + esc(style.label) + "</p>" +
-      "<p class=\"dollars\">$99</p>" +
-      "<p>Every empty interior on this listing. Virtually Staged on every file. 24 hour delivery.</p>" +
-      "<ul>" +
-      "<li>Furniture and decor on your existing photos</li>" +
-      "<li>One style across the unit</li>" +
-      "<li>Use on MLS, flyers, and social for this address</li>" +
-      "<li>One free scale revision</li>" +
-      "</ul>" +
-      "<p>Pay $99 is your signature. Address-only license.</p>" +
-      "</div>"
-    );
-  }
-
-  function renderPayBand(listing) {
-    var pay = stripeHref(listing, state.styleId);
-    return (
-      "<section class=\"pay\" id=\"pay\"><div class=\"wrap\">" +
-      "<h2>Pay $99</h2>" +
-      "<p>Payment licenses " + esc(listing.address) + ". Files in 24 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
-      "<a class=\"btn\" href=\"" + esc(pay) + "\" rel=\"noopener noreferrer\">Pay $99</a>" +
-      "</div></section>"
-    );
-  }
-
   function renderListing(listing) {
-    var photo = photoOf(listing, state.photoId);
-    var body;
-    var payBand = "";
-    var confirming = state.step === "confirm" && state.styleId && photo;
+    var photo = livingPhoto(listing);
+    var current = photoUrl(photo);
+    var room = (photo && photo.label) || "Living";
+    var styleId = state.styleId;
+    var readyPay = styleId === "warm-modern" || styleId === "florida-cozy";
+    var payHref = readyPay ? stripeHref(listing, styleId) : "";
+    var payLabel = readyPay
+      ? "Pay $99 — licenses " + listing.address
+      : "Pick a style to pay $99";
+    var navExtra = " id=\"nav-pay\"" + (readyPay ? "" : " aria-disabled=\"true\"");
     document.title = listing.address + " — SWFL ListLift";
 
-    if (confirming) {
-      body = renderConfirm(listing);
-      payBand = renderPayBand(listing);
-    } else if (state.step === "style" && photo) {
-      body = renderStyle(listing, photo);
-    } else {
-      body = renderGallery(listing);
-    }
-
     return (
-      navHtml(confirming ? stripeHref(listing, state.styleId) : "/#pay") +
+      navHtml(payHref, "Pay $99", navExtra) +
       "<main>" +
       "<section class=\"listing\"><div class=\"wrap\">" +
-      "<a class=\"back\" href=\"/\">Back to address</a>" +
+      "<a class=\"back\" href=\"/\">Back to SWFL ListLift</a>" +
+      "<p class=\"kicker\">This listing · $99</p>" +
       "<h1>" + esc(listing.address) + "</h1>" +
-      "<p class=\"facts\">" + esc(cityLine(listing)) + "</p>" +
-      "<p class=\"facts\">" + esc(facts(listing)) + "</p>" +
+      "<p class=\"facts\">" + esc(facts(listing)) + " · " + esc(listing.city) + "</p>" +
       (listing.agent_name ? "<p class=\"facts\">Agent: " + esc(listing.agent_name) + "</p>" : "") +
-      (listing.listing_url ? "<p class=\"facts\"><a href=\"" + esc(listing.listing_url) + "\" rel=\"noopener noreferrer\">Listing</a></p>" : "") +
-      body +
-      "</div></section>" +
-      payBand +
-      "</main>" +
-      footerHtml()
+      (listing.listing_url
+        ? "<p class=\"facts\"><a href=\"" + esc(listing.listing_url) + "\" rel=\"noopener noreferrer\">Listing on Redfin</a></p>"
+        : "") +
+      "<p class=\"lede listing-copy\">We help unfurnished listings improve their photos. $99 for every empty interior, one style, about 1–2 hours after payment for a typical pack. Virtually Staged on every file.</p>" +
+      "<div class=\"listing-trio\" aria-label=\"Current photo and two staged previews\">" +
+      "<figure class=\"frame is-on\">" +
+      imgTag({ src: current, alt: "Current " + room + " photo at " + listing.address }) +
+      "<figcaption>Current</figcaption></figure>" +
+      "<figure class=\"frame is-on\">" +
+      "<div class=\"preview-shot\">" +
+      imgTag({
+        src: styleSrc(photo, "warm-modern"),
+        fallback: current,
+        alt: "Warm modern preview of the same " + room.toLowerCase() + " photo"
+      }) +
+      previewMark() +
+      "</div>" +
+      "<figcaption>Warm modern</figcaption></figure>" +
+      "<figure class=\"frame is-on\">" +
+      "<div class=\"preview-shot\">" +
+      imgTag({
+        src: styleSrc(photo, "florida-cozy"),
+        fallback: current,
+        alt: "Florida cozy preview of the same " + room.toLowerCase() + " photo"
+      }) +
+      previewMark() +
+      "</div>" +
+      "<figcaption>Florida cozy</figcaption></figure>" +
+      "</div>" +
+      "<p class=\"caption\">Previews of one photo. After you pay, every empty interior is delivered in the style you pick.</p>" +
+      "<div class=\"buy-block\">" +
+      "<p class=\"ask\" id=\"style-label\">Style</p>" +
+      "<div class=\"style-toggle\" role=\"radiogroup\" aria-labelledby=\"style-label\">" +
+      "<label class=\"style-toggle-btn\">" +
+      "<input type=\"radio\" name=\"style\" value=\"warm-modern\"" +
+      (styleId === "warm-modern" ? " checked" : "") + ">" +
+      "<span>Warm modern</span></label>" +
+      "<label class=\"style-toggle-btn\">" +
+      "<input type=\"radio\" name=\"style\" value=\"florida-cozy\"" +
+      (styleId === "florida-cozy" ? " checked" : "") + ">" +
+      "<span>Florida cozy</span></label>" +
+      "</div>" +
+      "<p class=\"rule-line\">Locked until you pick a style. Does not go live on MLS by itself.</p>" +
+      "<a class=\"buy-btn" + (readyPay ? "" : " is-wait") + "\" id=\"listing-pay\"" +
+      (readyPay ? " href=\"" + esc(payHref) + "\" rel=\"noopener noreferrer\"" : " aria-disabled=\"true\"") +
+      ">" + esc(payLabel) + "</a>" +
+      "</div>" +
+      renderListingGallery(listing) +
+      "</div></section></main>" +
+      footerHtml(true)
     );
   }
 
@@ -430,6 +452,71 @@
     window.scrollTo(0, 0);
   }
 
+  function setPayLink(el, enabled, href, label) {
+    if (!el) return;
+    if (enabled && href) {
+      el.classList.remove("is-wait");
+      el.removeAttribute("aria-disabled");
+      el.setAttribute("href", href);
+      el.setAttribute("rel", "noopener noreferrer");
+    } else {
+      el.classList.add("is-wait");
+      el.setAttribute("aria-disabled", "true");
+      el.removeAttribute("href");
+    }
+    if (label) el.textContent = label;
+  }
+
+  function bindListingPay() {
+    var pay = document.getElementById("listing-pay");
+    var nav = document.getElementById("nav-pay");
+    var radios = app.querySelectorAll('input[name="style"]');
+    var slug;
+    var address;
+    var listing;
+    var i;
+
+    if (!pay && !radios.length) return;
+
+    slug = route().slug;
+    listing = null;
+    for (i = 0; i < catalog.listings.length; i += 1) {
+      if (catalog.listings[i].slug === slug) {
+        listing = catalog.listings[i];
+        break;
+      }
+    }
+    if (!listing) return;
+    address = listing.address;
+
+    function chosenStyle() {
+      var el = app.querySelector('input[name="style"]:checked');
+      return el ? el.value : "";
+    }
+
+    function sync() {
+      var style = chosenStyle();
+      var ready = style === "warm-modern" || style === "florida-cozy";
+      var href = ready ? stripeHref(listing, style) : "";
+      state.styleId = ready ? style : null;
+      setPayLink(pay, ready, href, ready ? "Pay $99 — licenses " + address : "Pick a style to pay $99");
+      setPayLink(nav, ready, href, "Pay $99");
+    }
+
+    function blockIfWaiting(event) {
+      if (this.getAttribute("aria-disabled") === "true") {
+        event.preventDefault();
+      }
+    }
+
+    if (pay) pay.addEventListener("click", blockIfWaiting);
+    if (nav) nav.addEventListener("click", blockIfWaiting);
+    for (i = 0; i < radios.length; i += 1) {
+      radios[i].addEventListener("change", sync);
+    }
+    sync();
+  }
+
   function bind() {
     var form = document.getElementById("lookup");
     var address;
@@ -444,6 +531,10 @@
         matches = searchListings(state.query);
         state.matches = matches;
         if (matches.length === 1) {
+          if (matches[0].slug === "landover-203") {
+            window.location.href = "/l/landover-203";
+            return;
+          }
           go("/l/" + matches[0].slug);
           return;
         }
@@ -465,41 +556,17 @@
       });
     });
 
-    app.querySelectorAll("[data-photo]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        state.photoId = btn.getAttribute("data-photo");
-        state.step = "style";
-        state.styleTab = "current";
-        state.styleId = null;
-        render();
-        window.scrollTo(0, 0);
-      });
-    });
-
-    app.querySelectorAll("[data-style]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        state.styleId = btn.getAttribute("data-style");
-        state.step = "confirm";
-        render();
-        window.scrollTo(0, 0);
-      });
-    });
-
-    app.querySelectorAll("[data-step]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        state.step = btn.getAttribute("data-step");
-        if (state.step !== "confirm") state.styleId = null;
-        render();
-        window.scrollTo(0, 0);
-      });
-    });
+    bindListingPay();
 
     app.querySelectorAll('a[href="/"], a[href^="/l/"]').forEach(function (link) {
       link.addEventListener("click", function (event) {
         var href;
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        event.preventDefault();
         href = link.getAttribute("href");
+        if (href === "/l/landover-203" || href.indexOf("/l/landover-203") === 0) {
+          return;
+        }
+        event.preventDefault();
         if (href === "/") {
           state.matches = null;
           go("/");
@@ -546,12 +613,6 @@
       app.innerHTML = renderMissing();
       bind();
       return;
-    }
-
-    if (state.step !== "gallery" && !photoOf(listing, state.photoId)) {
-      state.step = "gallery";
-      state.photoId = null;
-      state.styleId = null;
     }
 
     app.innerHTML = renderListing(listing);
