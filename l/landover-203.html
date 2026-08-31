@@ -17,7 +17,7 @@
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="/">SWFL ListLift</a>
-      <a class="nav-pay" id="nav-pay" href="PLACEHOLDER_STRIPE_URL?client_reference_id=landover-203">Pay $99</a>
+      <a class="nav-pay" id="nav-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99</a>
     </div>
   </header>
 
@@ -74,7 +74,7 @@
           </label>
         </fieldset>
 
-        <a class="buy-btn" id="landover-pay" href="PLACEHOLDER_STRIPE_URL?client_reference_id=landover-203">Pay $99 — licenses 709 Landover Cir #203</a>
+        <a class="buy-btn" id="landover-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99 — licenses 709 Landover Cir #203</a>
       </div>
     </section>
   </main>
@@ -89,21 +89,18 @@
 
   <script>
     (function () {
-      var STRIPE = "PLACEHOLDER_STRIPE_URL";
+      var STRIPE = "https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01";
       var pay = document.getElementById("landover-pay");
       var nav = document.getElementById("nav-pay");
       var radios = document.querySelectorAll('input[name="style"]');
 
-      function hrefFor(style) {
-        var ref = "landover-203";
-        if (style) ref += ":" + style;
+      function hrefFor() {
         var join = STRIPE.indexOf("?") >= 0 ? "&" : "?";
-        return STRIPE + join + "client_reference_id=" + encodeURIComponent(ref);
+        return STRIPE + join + "client_reference_id=landover-203";
       }
 
       function sync() {
-        var chosen = document.querySelector('input[name="style"]:checked');
-        var href = hrefFor(chosen ? chosen.value : "");
+        var href = hrefFor();
         if (pay) pay.setAttribute("href", href);
         if (nav) nav.setAttribute("href", href);
       }
