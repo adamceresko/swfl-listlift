@@ -376,11 +376,12 @@
     var navExtra = " id=\"nav-pay\"" + (readyPay ? "" : " aria-disabled=\"true\"");
     document.title = listing.address + " — SWFL ListLift";
 
+    var tab = state.styleTab || "current";
+
     return (
       navHtml(payHref, "Pay $99", navExtra) +
       "<main>" +
       "<section class=\"listing\"><div class=\"wrap\">" +
-      "<a class=\"back\" href=\"/\">Back to SWFL ListLift</a>" +
       "<p class=\"kicker\">This listing · $99</p>" +
       "<h1>" + esc(listing.address) + "</h1>" +
       "<p class=\"facts\">" + esc(facts(listing)) + " · " + esc(listing.city) + "</p>" +
@@ -388,12 +389,17 @@
       (listing.listing_url
         ? "<p class=\"facts\"><a href=\"" + esc(listing.listing_url) + "\" rel=\"noopener noreferrer\">Listing on Redfin</a></p>"
         : "") +
-      "<p class=\"lede listing-copy\">We help unfurnished listings improve their photos. $99 for every empty interior, one style, about 1–2 hours after payment for a typical pack. Virtually Staged on every file.</p>" +
-      "<div class=\"listing-trio\" aria-label=\"Current photo and two staged previews\">" +
-      "<figure class=\"frame is-on\">" +
+      "<div class=\"trio listing-hero\" data-trio=\"listing\">" +
+      "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Listing photo styles\">" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "current") + "\" data-tab=\"current\">Current</button>" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida</button>" +
+      "</div>" +
+      "<div class=\"trio-frames\">" +
+      "<figure class=\"frame" + (tab === "current" ? " is-on" : "") + "\" data-frame=\"current\">" +
       imgTag({ src: current, alt: "Current " + room + " photo at " + listing.address }) +
       "<figcaption>Current</figcaption></figure>" +
-      "<figure class=\"frame is-on\">" +
+      "<figure class=\"frame" + (tab === "warm-modern" ? " is-on" : "") + "\" data-frame=\"warm-modern\">" +
       "<div class=\"preview-shot\">" +
       imgTag({
         src: styleSrc(photo, "warm-modern"),
@@ -403,17 +409,17 @@
       previewMark() +
       "</div>" +
       "<figcaption>Warm modern</figcaption></figure>" +
-      "<figure class=\"frame is-on\">" +
+      "<figure class=\"frame" + (tab === "florida" ? " is-on" : "") + "\" data-frame=\"florida\">" +
       "<div class=\"preview-shot\">" +
       imgTag({
         src: styleSrc(photo, "florida-cozy"),
         fallback: current,
-        alt: "Florida cozy preview of the same " + room.toLowerCase() + " photo"
+        alt: "Florida preview of the same " + room.toLowerCase() + " photo"
       }) +
       previewMark() +
       "</div>" +
-      "<figcaption>Florida cozy</figcaption></figure>" +
-      "</div>" +
+      "<figcaption>Florida</figcaption></figure>" +
+      "</div></div>" +
       "<p class=\"caption\">Previews of one photo. After you pay, every empty interior is delivered in the style you pick.</p>" +
       "<div class=\"buy-block\">" +
       "<p class=\"ask\" id=\"style-label\">Style</p>" +
@@ -494,7 +500,7 @@
       return el ? el.value : "";
     }
 
-    function sync() {
+    function syncPay() {
       var style = chosenStyle();
       var ready = style === "warm-modern" || style === "florida-cozy";
       var href = ready ? stripeHref(listing, style) : "";
@@ -512,9 +518,15 @@
     if (pay) pay.addEventListener("click", blockIfWaiting);
     if (nav) nav.addEventListener("click", blockIfWaiting);
     for (i = 0; i < radios.length; i += 1) {
-      radios[i].addEventListener("change", sync);
+      radios[i].addEventListener("change", function () {
+        var style = chosenStyle();
+        state.styleId = style === "warm-modern" || style === "florida-cozy" ? style : null;
+        if (style === "warm-modern") state.styleTab = "warm-modern";
+        if (style === "florida-cozy") state.styleTab = "florida";
+        render();
+      });
     }
-    sync();
+    syncPay();
   }
 
   function bind() {
@@ -547,10 +559,15 @@
     app.querySelectorAll("[data-tab]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var trio = btn.closest("[data-trio]");
+        var tab = btn.getAttribute("data-tab");
         if (trio && trio.getAttribute("data-trio") === "home") {
-          state.homeTab = btn.getAttribute("data-tab");
+          state.homeTab = tab;
+        } else if (trio && trio.getAttribute("data-trio") === "listing") {
+          state.styleTab = tab;
+          if (tab === "warm-modern") state.styleId = "warm-modern";
+          if (tab === "florida") state.styleId = "florida-cozy";
         } else {
-          state.styleTab = btn.getAttribute("data-tab");
+          state.styleTab = tab;
         }
         render();
       });
