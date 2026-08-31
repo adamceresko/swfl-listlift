@@ -48,31 +48,94 @@
         <p class="caption">Previews of one photo. The rest of the empty interiors get the style you pick after payment.</p>
 
         <p class="ask">Listing photos</p>
-        <div class="photo-strip">
-          <figure>
-            <img src="/img/landover/empty.jpg" alt="Empty living room thumbnail" width="720" height="960">
-            <figcaption class="who">Empty living</figcaption>
+        <div class="listing-gallery" aria-label="All 18 listing photos">
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/01.jpg" alt="Building exterior" width="640" height="480">
+            <figcaption><span class="who">Exterior</span><span class="mark">As-is</span></figcaption>
           </figure>
-          <figure>
-            <img src="/img/landover/listing-hero.jpg" alt="Building exterior at 709 Landover Cir" width="720" height="960">
-            <figcaption class="who">Listing photo</figcaption>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/02.jpg" alt="Building entrance" width="640" height="854">
+            <figcaption><span class="who">Exterior</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/03.jpg" alt="Hallway" width="640" height="854">
+            <figcaption><span class="who">Hallway</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/04.jpg" alt="Empty living room" width="640" height="854">
+            <figcaption><span class="who">Living</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/05.jpg" alt="Kitchen and dining nook" width="640" height="854">
+            <figcaption><span class="who">Kitchen</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/06.jpg" alt="Screened lanai" width="640" height="854">
+            <figcaption><span class="who">Lanai</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/07.jpg" alt="Dining through kitchen pass-through" width="640" height="854">
+            <figcaption><span class="who">Dining</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/08.jpg" alt="Hallway" width="640" height="854">
+            <figcaption><span class="who">Hallway</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/09.jpg" alt="Bedroom" width="640" height="854">
+            <figcaption><span class="who">Bedroom</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/10.jpg" alt="Bedroom" width="640" height="854">
+            <figcaption><span class="who">Bedroom</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/11.jpg" alt="Bathroom" width="640" height="854">
+            <figcaption><span class="who">Bath</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/12.jpg" alt="Bathroom" width="640" height="854">
+            <figcaption><span class="who">Bath</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-stage">
+            <img src="/img/landover/gallery/13.jpg" alt="Bedroom" width="640" height="854">
+            <figcaption><span class="who">Bedroom</span><span class="mark">We'll stage</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/14.jpg" alt="Bathroom" width="640" height="854">
+            <figcaption><span class="who">Bath</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/15.jpg" alt="Bathroom" width="640" height="854">
+            <figcaption><span class="who">Bath</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/16.jpg" alt="Laundry" width="640" height="854">
+            <figcaption><span class="who">Laundry</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/17.jpg" alt="Community pool" width="640" height="480">
+            <figcaption><span class="who">Pool</span><span class="mark">As-is</span></figcaption>
+          </figure>
+          <figure class="is-skip">
+            <img src="/img/landover/gallery/18.jpg" alt="Community pool" width="640" height="480">
+            <figcaption><span class="who">Pool</span><span class="mark">As-is</span></figcaption>
           </figure>
         </div>
-
-        <p class="rule-line">We'll stage the empty interiors — living, bedrooms, and dining (the vacant rooms on this listing).</p>
+        <p class="rule-line">We'll stage 9 empty interiors (living, bedrooms, dining, lanai, hallways). $99 is the whole set.</p>
         <p class="rule-line">$99 licenses this address. Furniture and decor only. Walls, windows, floors, views stay. Marked Virtually Staged. Usually 1–2 hours after payment.</p>
 
-        <fieldset class="style-radios">
-          <legend>Style</legend>
-          <label>
+        <p class="ask" id="style-label">Style</p>
+        <div class="style-toggle" role="radiogroup" aria-labelledby="style-label">
+          <label class="style-toggle-btn">
             <input type="radio" name="style" value="warm-modern" checked>
-            Warm modern
+            <span>Warm modern</span>
           </label>
-          <label>
+          <label class="style-toggle-btn">
             <input type="radio" name="style" value="florida-cozy">
-            Florida cozy
+            <span>Florida cozy</span>
           </label>
-        </fieldset>
+        </div>
 
         <a class="buy-btn" id="landover-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99 — licenses 709 Landover Cir #203</a>
       </div>
