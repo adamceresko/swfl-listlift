@@ -225,6 +225,14 @@ h2 { font-size: clamp(1.25rem, 2.4vw, 1.55rem); }
 
 .sample { margin-top: 2rem; }
 
+.trio-hint {
+  margin: 0 0 0.55rem;
+  max-width: 32rem;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
 .trio-tabs {
   display: flex;
   gap: 0;
@@ -570,6 +578,10 @@ section { padding: 2rem 0; }
   margin: 1.1rem 0 0;
 }
 
+.listing-hero .trio-hint {
+  max-width: none;
+}
+
 .listing-hero .trio-tabs {
   display: flex;
   max-width: none;
@@ -819,6 +831,8 @@ section { padding: 2rem 0; }
 
 @media (min-width: 800px) {
   .trio-tabs { display: none; }
+  .trio-hint { display: none; }
+  .listing-hero .trio-hint { display: block; }
   .trio-frames,
   .style-pick { grid-template-columns: 1fr 1fr 1fr; }
   .frame { display: block !important; }
@@ -838,7 +852,8 @@ section { padding: 2rem 0; }
 }
 
 @media print {
-  .nav, .nav-pay, .trio-tabs, .btn, .lookup { display: none !important; }
+  .nav, .nav-pay, .trio-tabs, .trio-hint, .btn, .lookup { display: none !important; }
+  .listing-hero .trio-hint { display: block !important; }
   .trio-frames { display: grid !important; grid-template-columns: 1fr 1fr 1fr; }
   .frame { display: block !important; break-inside: avoid; }
   .listing-hero .trio-tabs { display: flex !important; }
