@@ -7,7 +7,7 @@
     },
     {
       "id": "florida",
-      "label": "Cozy Florida traditional",
+      "label": "Florida cozy",
       "line": "Light oak, rattan, airy."
     }
   ],
@@ -23,9 +23,18 @@
       "baths": 2,
       "sqft": 1300,
       "listing_url": "https://www.redfin.com/FL/Naples/709-Landover-Cir-34104/unit-203/home/67585392",
-      "agent_name": "Steven Koleno",
+      "agent_name": "Steven Koleno, Beycome of Florida LLC",
       "photos": [
-        { "id": "hero", "label": "Listing photo", "url": "https://cdn.listingphotos.sierrastatic.com/large/v1753041320/116/116_225056624_02.jpg" }
+        {
+          "id": "empty",
+          "label": "Empty living",
+          "url": "img/landover/empty.jpg",
+          "styles": {
+            "warm-modern": "img/landover/warm-modern.jpg",
+            "florida": "img/landover/florida-cozy.jpg"
+          }
+        },
+        { "id": "hero", "label": "Listing photo", "url": "img/landover/listing-hero.jpg" }
       ]
     },
     {

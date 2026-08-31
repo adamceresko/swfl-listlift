@@ -6,7 +6,7 @@
 
   var STYLE_FALLBACK = {
     "warm-modern": { id: "warm-modern", label: "Warm modern", line: "Walnut, linen, low seating." },
-    florida: { id: "florida", label: "Cozy Florida traditional", line: "Light oak, rattan, airy." }
+    florida: { id: "florida", label: "Florida cozy", line: "Light oak, rattan, airy." }
   };
 
   var catalog = { listings: [], styles: [] };
@@ -209,8 +209,8 @@
       navHtml("#pay") +
       "<main><section class=\"hero\"><div class=\"wrap\">" +
       "<p class=\"kicker\">One listing · one address · $99</p>" +
-      "<h1>Every empty interior. One style. Twenty-four hours.</h1>" +
-      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Cozy Florida traditional. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
+      "<h1>Every empty interior. One style. One to two hours.</h1>" +
+      "<p class=\"lede\">Enter the listing address. Pick a photo. Pick Warm modern or Florida cozy. Pay $99 — that is the license. Virtually Staged on every file.</p>" +
       "<form class=\"lookup\" id=\"lookup\" action=\"/\" method=\"get\">" +
       "<label class=\"lookup-label\" for=\"address\">Listing address</label>" +
       "<div class=\"lookup-row\">" +
@@ -224,7 +224,7 @@
       "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Sample styles\">" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "empty") + "\" data-tab=\"empty\">Current</button>" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida</button>" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida cozy</button>" +
       "</div>" +
       "<div class=\"trio-frames\">" +
       "<figure class=\"frame" + (tab === "empty" ? " is-on" : "") + "\">" +
@@ -234,18 +234,18 @@
       demoImg("warm-modern", "Sample warm modern staging, labeled DEMO") +
       "<figcaption>Warm modern</figcaption></figure>" +
       "<figure class=\"frame badge" + (tab === "florida" ? " is-on" : "") + "\">" +
-      demoImg("florida", "Sample cozy Florida traditional staging, labeled DEMO") +
-      "<figcaption>Cozy Florida traditional</figcaption></figure>" +
+      demoImg("florida", "Sample Florida cozy staging, labeled DEMO") +
+      "<figcaption>Florida cozy</figcaption></figure>" +
       "</div></div>" +
-      "<p class=\"caption\">Sample only. Not a real listing.</p>" +
+      "<p class=\"caption\">Example room — not a live listing</p>" +
       "</div></div></section>" +
       "<section class=\"band\"><div class=\"wrap\">" +
       "<h2>How it works</h2>" +
       "<ol class=\"steps\">" +
       "<li><strong>Enter the address</strong><span>We open that listing. A link we send you skips this box.</span></li>" +
       "<li><strong>Pick one photo</strong><span>Every listing photo is there. You choose the room.</span></li>" +
-      "<li><strong>Pick a style</strong><span>Warm modern or Cozy Florida traditional. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
-      "<li><strong>Pay $99</strong><span>That licenses that address. Every empty interior. Files in 24 hours. Virtually Staged on every file.</span></li>" +
+      "<li><strong>Pick a style</strong><span>Warm modern or Florida cozy. Furniture and decor only. Walls, windows, floors, views, and the camera stay as shot.</span></li>" +
+      "<li><strong>Pay $99</strong><span>That licenses that address. Every empty interior. Files in 1–2 hours. Virtually Staged on every file.</span></li>" +
       "</ol></div></section>" +
       "<section class=\"band\"><div class=\"wrap split\"><div>" +
       "<h2>What you get</h2><ul>" +
@@ -273,7 +273,8 @@
       "</div></section>" +
       "<section class=\"pay\" id=\"pay\"><div class=\"wrap\">" +
       "<h2>Pay $99</h2>" +
-      "<p>Start with the address above. Payment is the signature. Files in 24 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
+      "<p>Start with the address above. Payment is the signature. Files in 1–2 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
+      "<a class=\"btn\" href=\"" + esc(STRIPE_LINK) + "\" rel=\"noopener noreferrer\">Pay $99</a>" +
       "</div></section></main>" +
       footerHtml()
     );
@@ -332,7 +333,7 @@
       "<div class=\"trio-tabs\" role=\"tablist\" aria-label=\"Room style\">" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "current") + "\" data-tab=\"current\">Current</button>" +
       "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "warm-modern") + "\" data-tab=\"warm-modern\">Warm modern</button>" +
-      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida</button>" +
+      "<button type=\"button\" role=\"tab\" aria-selected=\"" + (tab === "florida") + "\" data-tab=\"florida\">Florida cozy</button>" +
       "</div>" +
       "<div class=\"style-pick\">" +
       "<figure class=\"style-card is-ref frame" + (tab === "current" ? " is-on" : "") + "\">" +
@@ -343,7 +344,7 @@
       "<span class=\"who\">" + esc(warm.label) + "</span>" +
       "<span class=\"line\">" + esc(warm.line) + "</span></button>" +
       "<button type=\"button\" class=\"style-card frame" + (tab === "florida" ? " is-on" : "") + "\" data-style=\"florida\">" +
-      imgTag({ src: floridaSrc, alt: "Florida look for " + photo.label }) +
+      imgTag({ src: floridaSrc, alt: "Florida cozy look for " + photo.label }) +
       "<span class=\"who\">" + esc(florida.label) + "</span>" +
       "<span class=\"line\">" + esc(florida.line) + "</span></button>" +
       "</div></div>" +
@@ -359,7 +360,7 @@
       "<div class=\"confirm-box\">" +
       "<p class=\"tag\">" + esc(style.label) + "</p>" +
       "<p class=\"dollars\">$99</p>" +
-      "<p>Every empty interior on this listing. Virtually Staged on every file. 24 hour delivery.</p>" +
+      "<p>Every empty interior on this listing. Virtually Staged on every file. 1–2 hour delivery.</p>" +
       "<ul>" +
       "<li>Furniture and decor on your existing photos</li>" +
       "<li>One style across the unit</li>" +
@@ -376,7 +377,7 @@
     return (
       "<section class=\"pay\" id=\"pay\"><div class=\"wrap\">" +
       "<h2>Pay $99</h2>" +
-      "<p>Payment licenses " + esc(listing.address) + ". Files in 24 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
+      "<p>Payment licenses " + esc(listing.address) + ". Files in 1–2 hours. Read the <a href=\"terms.html\">order terms</a> first.</p>" +
       "<a class=\"btn\" href=\"" + esc(pay) + "\" rel=\"noopener noreferrer\">Pay $99</a>" +
       "</div></section>"
     );
@@ -444,6 +445,10 @@
         matches = searchListings(state.query);
         state.matches = matches;
         if (matches.length === 1) {
+          if (matches[0].slug === "landover-203") {
+            window.location.href = "/l/landover-203";
+            return;
+          }
           go("/l/" + matches[0].slug);
           return;
         }
@@ -498,8 +503,11 @@
       link.addEventListener("click", function (event) {
         var href;
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        event.preventDefault();
         href = link.getAttribute("href");
+        if (href === "/l/landover-203" || href.indexOf("/l/landover-203") === 0) {
+          return;
+        }
+        event.preventDefault();
         if (href === "/") {
           state.matches = null;
           go("/");
