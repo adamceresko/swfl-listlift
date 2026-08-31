@@ -583,6 +583,40 @@ section { padding: 2rem 0; }
 
 .listing-trio .badge::after { bottom: 2.1rem; }
 
+.listing-trio figcaption {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.listing-copy { margin: 1rem 0 0; }
+
+.preview-shot {
+  position: relative;
+}
+
+.preview-wm {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.preview-wm span {
+  color: rgba(246, 241, 232, 0.55);
+  font-size: clamp(0.68rem, 1.5vw, 0.92rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-28deg);
+  text-shadow: 0 1px 2px rgba(26, 23, 20, 0.28);
+}
+
 .listing-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
