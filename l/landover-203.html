@@ -45,9 +45,26 @@
             <figcaption>Florida cozy</figcaption>
           </figure>
         </div>
-        <p class="caption">Previews of one photo. The rest of the empty interiors get the style you pick after payment.</p>
+        <p class="caption">Previews of one photo. The rest of the empty interiors get the style you pick.</p>
+
+        <div class="buy-block">
+          <p class="ask" id="style-label">Style</p>
+          <div class="style-toggle" role="radiogroup" aria-labelledby="style-label">
+            <label class="style-toggle-btn">
+              <input type="radio" name="style" value="warm-modern" checked>
+              <span>Warm modern</span>
+            </label>
+            <label class="style-toggle-btn">
+              <input type="radio" name="style" value="florida-cozy">
+              <span>Florida cozy</span>
+            </label>
+          </div>
+          <p class="rule-line">We'll stage 9 empty interiors. $99 licenses this address.</p>
+          <a class="buy-btn" id="landover-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99 — licenses 709 Landover Cir #203</a>
+        </div>
 
         <p class="ask">Listing photos</p>
+        <p class="caption gallery-key">Green = we'll stage.</p>
         <div class="listing-gallery" aria-label="All 18 listing photos">
           <figure class="is-skip">
             <img src="/img/landover/gallery/01.jpg" alt="Building exterior" width="640" height="480">
@@ -122,22 +139,6 @@
             <figcaption><span class="who">Pool</span><span class="mark">As-is</span></figcaption>
           </figure>
         </div>
-        <p class="rule-line">We'll stage 9 empty interiors (living, bedrooms, dining, lanai, hallways). $99 is the whole set.</p>
-        <p class="rule-line">$99 licenses this address. Furniture and decor only. Walls, windows, floors, views stay. Marked Virtually Staged. Usually 1–2 hours after payment.</p>
-
-        <p class="ask" id="style-label">Style</p>
-        <div class="style-toggle" role="radiogroup" aria-labelledby="style-label">
-          <label class="style-toggle-btn">
-            <input type="radio" name="style" value="warm-modern" checked>
-            <span>Warm modern</span>
-          </label>
-          <label class="style-toggle-btn">
-            <input type="radio" name="style" value="florida-cozy">
-            <span>Florida cozy</span>
-          </label>
-        </div>
-
-        <a class="buy-btn" id="landover-pay" href="https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01?client_reference_id=landover-203">Pay $99 — licenses 709 Landover Cir #203</a>
       </div>
     </section>
   </main>

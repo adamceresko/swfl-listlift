@@ -629,6 +629,19 @@ section { padding: 2rem 0; }
 
 .listing-gallery figure.is-skip .mark { color: var(--muted); }
 
+.buy-block {
+  margin: 0.15rem 0 2rem;
+  max-width: 34rem;
+}
+
+.buy-block .ask { margin: 0 0 0.45rem; }
+
+.buy-block .rule-line { margin: 0.9rem 0 0; }
+
+.buy-block .buy-btn { margin-top: 0.85rem; }
+
+.gallery-key { margin: 0 0 0.65rem; }
+
 .style-toggle {
   display: grid;
   grid-template-columns: 1fr 1fr;
