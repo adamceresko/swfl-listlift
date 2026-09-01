@@ -137,16 +137,6 @@
     return styleUrl(photo, styleKey(styleId));
   }
 
-  function previewMark() {
-    return (
-      "<div class=\"preview-wm\" aria-hidden=\"true\">" +
-      "<span>SWFL ListLift · PREVIEW</span>" +
-      "<span>SWFL ListLift · PREVIEW</span>" +
-      "<span>SWFL ListLift · PREVIEW</span>" +
-      "</div>"
-    );
-  }
-
   function photoUrl(photo) {
     return photo && photo.url ? photo.url : "";
   }
@@ -408,7 +398,6 @@
         fallback: current,
         alt: "Warm modern preview of the same " + room.toLowerCase() + " photo"
       }) +
-      previewMark() +
       "</div>" +
       "<figcaption>Warm modern</figcaption></figure>" +
       "<figure class=\"frame" + (tab === "florida" ? " is-on" : "") + "\" data-frame=\"florida\">" +
@@ -418,7 +407,6 @@
         fallback: current,
         alt: "Florida cozy preview of the same " + room.toLowerCase() + " photo"
       }) +
-      previewMark() +
       "</div>" +
       "<figcaption>Florida cozy</figcaption></figure>" +
       "</div></div>" +
