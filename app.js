@@ -4,6 +4,7 @@
   var STRIPE_LINK = "https://buy.stripe.com/8x2bIVa10aA3aM6dJp0RG00";
   var LANDOVER_STRIPE = "https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01";
   var CHERRYSTONE_STRIPE = "https://buy.stripe.com/6oUaER7SS0Zt8DY7l10RG02";
+  var GULFSHORE_STRIPE = "https://buy.stripe.com/fZu8wJ2yybE707s34L0RG03";
   var DATA_URL = "data/listings.json";
   var MIXPANEL_TOKEN = "c3094cb7b0fee96f8f26ee8942b3a720";
 
@@ -154,6 +155,7 @@
     var base = STRIPE_LINK;
     if (listing && listing.slug === "landover-203") base = LANDOVER_STRIPE;
     if (listing && listing.slug === "cherrystone-b108") base = CHERRYSTONE_STRIPE;
+    if (listing && listing.slug === "gulfshore-1406") base = GULFSHORE_STRIPE;
     var url = new URL(base);
     var ref = listing && listing.slug ? listing.slug : "";
     var sid = styleId === "florida" ? "florida-cozy" : styleId;
