@@ -4,6 +4,14 @@
   var STRIPE_LINK = "https://buy.stripe.com/8x2bIVa10aA3aM6dJp0RG00";
   var LANDOVER_STRIPE = "https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01";
   var DATA_URL = "data/listings.json";
+  var MIXPANEL_TOKEN = "c3094cb7b0fee96f8f26ee8942b3a720";
+
+  var STYLE_NAMES = {
+    current: "current",
+    "warm-modern": "warm_modern",
+    florida: "florida_cozy",
+    "florida-cozy": "florida_cozy"
+  };
 
   var STYLE_FALLBACK = {
     "warm-modern": { id: "warm-modern", label: "Warm modern", line: "Walnut, linen, low seating." },
@@ -25,6 +33,33 @@
   };
 
   var app = document.getElementById("app");
+  var lastPageKey = null;
+
+  function initAnalytics() {
+    if (window.llMixpanelReady) return;
+    if (!window.mixpanel || !window.mixpanel.init) return;
+    window.llMixpanelReady = true;
+    mixpanel.init(MIXPANEL_TOKEN, { autocapture: false, track_pageview: false });
+  }
+
+  function track(name, props) {
+    initAnalytics();
+    try {
+      if (window.mixpanel && typeof window.mixpanel.track === "function") {
+        mixpanel.track(name, props || {});
+      }
+    } catch (err) {}
+  }
+
+  function styleName(value) {
+    return STYLE_NAMES[value] || "";
+  }
+
+  function pageViewed(key, props) {
+    if (lastPageKey === key) return;
+    lastPageKey = key;
+    if (props) track("Page Viewed", props);
+  }
 
   function esc(value) {
     return String(value == null ? "" : value)
@@ -499,20 +534,25 @@
       setPayLink(nav, ready, href, "Pay $99");
     }
 
-    function blockIfWaiting(event) {
-      if (this.getAttribute("aria-disabled") === "true") {
+    function onPayClick(event) {
+      if (this.getAttribute("aria-disabled") === "true" || this.classList.contains("is-wait")) {
         event.preventDefault();
+        return;
       }
+      track("Pay Clicked", { style: styleName(chosenStyle()), slug: slug, price: 99 });
     }
 
-    if (pay) pay.addEventListener("click", blockIfWaiting);
-    if (nav) nav.addEventListener("click", blockIfWaiting);
+    if (pay) pay.addEventListener("click", onPayClick);
+    if (nav) nav.addEventListener("click", onPayClick);
     for (i = 0; i < radios.length; i += 1) {
       radios[i].addEventListener("change", function () {
         var style = chosenStyle();
         state.styleId = style === "warm-modern" || style === "florida-cozy" ? style : null;
         if (style === "warm-modern") state.styleTab = "warm-modern";
         if (style === "florida-cozy") state.styleTab = "florida";
+        if (styleName(style)) {
+          track("Pay Style Selected", { style: styleName(style), slug: slug });
+        }
         render();
       });
     }
@@ -550,10 +590,15 @@
       btn.addEventListener("click", function () {
         var trio = btn.closest("[data-trio]");
         var tab = btn.getAttribute("data-tab");
+        var here;
         if (trio && trio.getAttribute("data-trio") === "home") {
           state.homeTab = tab;
         } else if (trio && trio.getAttribute("data-trio") === "listing") {
           state.styleTab = tab;
+          here = route();
+          if (here.name === "listing" && styleName(tab)) {
+            track("Photo Style Clicked", { style: styleName(tab), slug: here.slug });
+          }
         } else {
           state.styleTab = tab;
         }
@@ -597,6 +642,7 @@
     if (current.name === "home") {
       app.innerHTML = renderHome();
       bind();
+      pageViewed("home", { page: "home", path: location.pathname });
       return;
     }
 
@@ -617,14 +663,22 @@
     if (!listing) {
       app.innerHTML = renderMissing();
       bind();
+      pageViewed("missing:" + current.slug, null);
       return;
     }
 
     app.innerHTML = renderListing(listing);
     bind();
+    pageViewed("listing:" + listing.slug, {
+      page: "listing",
+      path: location.pathname,
+      slug: listing.slug,
+      address: listing.address
+    });
   }
 
   function init() {
+    initAnalytics();
     render();
     fetch(DATA_URL, { cache: "no-cache" })
       .then(function (res) {

@@ -162,14 +162,44 @@
     </div>
   </footer>
 
+  <script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>
   <script>
     (function () {
       var STRIPE = "https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01";
+      var MIXPANEL_TOKEN = "c3094cb7b0fee96f8f26ee8942b3a720";
+      var SLUG = "landover-203";
+      var ADDRESS = "709 Landover Cir #203";
+      var STYLE_NAMES = {
+        current: "current",
+        "warm-modern": "warm_modern",
+        florida: "florida_cozy",
+        "florida-cozy": "florida_cozy"
+      };
       var pay = document.getElementById("landover-pay");
       var nav = document.getElementById("nav-pay");
       var radios = document.querySelectorAll('input[name="style"]');
       var tabs = document.querySelectorAll('[data-trio="listing"] [data-tab]');
       var frames = document.querySelectorAll('[data-trio="listing"] .frame');
+
+      function initAnalytics() {
+        if (window.llMixpanelReady) return;
+        if (!window.mixpanel || !window.mixpanel.init) return;
+        window.llMixpanelReady = true;
+        mixpanel.init(MIXPANEL_TOKEN, { autocapture: false, track_pageview: false });
+      }
+
+      function track(name, props) {
+        initAnalytics();
+        try {
+          if (window.mixpanel && typeof window.mixpanel.track === "function") {
+            mixpanel.track(name, props || {});
+          }
+        } catch (err) {}
+      }
+
+      function styleName(value) {
+        return STYLE_NAMES[value] || "";
+      }
 
       function chosenStyle() {
         var el = document.querySelector('input[name="style"]:checked');
@@ -217,28 +247,39 @@
         setPay(nav, ready, "Pay $99");
       }
 
-      function blockIfWaiting(event) {
-        if (this.getAttribute("aria-disabled") === "true") {
+      function onPayClick(event) {
+        if (this.getAttribute("aria-disabled") === "true" || this.classList.contains("is-wait")) {
           event.preventDefault();
+          return;
         }
+        track("Pay Clicked", { style: styleName(chosenStyle()), slug: SLUG, price: 99 });
       }
 
-      if (pay) pay.addEventListener("click", blockIfWaiting);
-      if (nav) nav.addEventListener("click", blockIfWaiting);
+      if (pay) pay.addEventListener("click", onPayClick);
+      if (nav) nav.addEventListener("click", onPayClick);
       for (var i = 0; i < radios.length; i += 1) {
         radios[i].addEventListener("change", function () {
           var style = chosenStyle();
           if (style === "warm-modern") showPreview("warm-modern");
           if (style === "florida-cozy") showPreview("florida");
+          if (styleName(style)) {
+            track("Pay Style Selected", { style: styleName(style), slug: SLUG });
+          }
           sync();
         });
       }
       for (i = 0; i < tabs.length; i += 1) {
         tabs[i].addEventListener("click", function () {
-          showPreview(this.getAttribute("data-tab"));
+          var tab = this.getAttribute("data-tab");
+          showPreview(tab);
+          if (styleName(tab)) {
+            track("Photo Style Clicked", { style: styleName(tab), slug: SLUG });
+          }
         });
       }
       sync();
+      initAnalytics();
+      track("Page Viewed", { page: "listing", path: location.pathname, slug: SLUG, address: ADDRESS });
     })();
   </script>
 </body>
