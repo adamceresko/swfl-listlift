@@ -36,24 +36,96 @@
         }
       ],
       "gallery": [
-        { "url": "img/landover/gallery/01.jpg", "label": "Exterior", "stage": false },
-        { "url": "img/landover/gallery/02.jpg", "label": "Exterior", "stage": false },
-        { "url": "img/landover/gallery/03.jpg", "label": "Hallway", "stage": true },
-        { "url": "img/landover/gallery/04.jpg", "label": "Living", "stage": true },
-        { "url": "img/landover/gallery/05.jpg", "label": "Kitchen", "stage": true },
-        { "url": "img/landover/gallery/06.jpg", "label": "Lanai", "stage": true },
-        { "url": "img/landover/gallery/07.jpg", "label": "Dining", "stage": true },
-        { "url": "img/landover/gallery/08.jpg", "label": "Hallway", "stage": true },
-        { "url": "img/landover/gallery/09.jpg", "label": "Primary", "stage": true },
-        { "url": "img/landover/gallery/10.jpg", "label": "Primary, other view", "stage": true },
-        { "url": "img/landover/gallery/11.jpg", "label": "Bath", "stage": false },
-        { "url": "img/landover/gallery/12.jpg", "label": "Bath", "stage": false },
-        { "url": "img/landover/gallery/13.jpg", "label": "Bedroom 2", "stage": true },
-        { "url": "img/landover/gallery/14.jpg", "label": "Bath", "stage": false },
-        { "url": "img/landover/gallery/15.jpg", "label": "Bath", "stage": false },
-        { "url": "img/landover/gallery/16.jpg", "label": "Laundry", "stage": false },
-        { "url": "img/landover/gallery/17.jpg", "label": "Pool", "stage": false },
-        { "url": "img/landover/gallery/18.jpg", "label": "Pool", "stage": false }
+        {
+          "url": "img/landover/gallery/01.jpg",
+          "label": "Exterior",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/02.jpg",
+          "label": "Exterior",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/03.jpg",
+          "label": "Hallway",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/04.jpg",
+          "label": "Living",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/05.jpg",
+          "label": "Kitchen",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/06.jpg",
+          "label": "Lanai",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/07.jpg",
+          "label": "Dining",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/08.jpg",
+          "label": "Hallway",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/09.jpg",
+          "label": "Primary",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/10.jpg",
+          "label": "Primary, other view",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/11.jpg",
+          "label": "Bath",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/12.jpg",
+          "label": "Bath",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/13.jpg",
+          "label": "Bedroom 2",
+          "stage": true
+        },
+        {
+          "url": "img/landover/gallery/14.jpg",
+          "label": "Bath",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/15.jpg",
+          "label": "Bath",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/16.jpg",
+          "label": "Laundry",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/17.jpg",
+          "label": "Pool",
+          "stage": false
+        },
+        {
+          "url": "img/landover/gallery/18.jpg",
+          "label": "Pool",
+          "stage": false
+        }
       ]
     },
     {
@@ -96,7 +168,7 @@
         {
           "id": "living",
           "label": "Living",
-          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1774794464/116/116_225070021_05.jpg",
+          "url": "img/sicilia-ct/empty.jpg",
           "styles": {
             "warm-modern": "img/sicilia-ct/warm-modern.jpg",
             "florida": "img/sicilia-ct/florida-cozy.jpg"
@@ -120,7 +192,7 @@
         {
           "id": "living",
           "label": "Living",
-          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1773940922/116/116_225070187_02.jpg",
+          "url": "img/wildflower-cir/empty.jpg",
           "styles": {
             "warm-modern": "img/wildflower-cir/warm-modern.jpg",
             "florida": "img/wildflower-cir/florida-cozy.jpg"
@@ -144,7 +216,7 @@
         {
           "id": "living",
           "label": "Kitchen",
-          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787323264/116/116_226011236_09.jpg",
+          "url": "img/saona-ct/empty.jpg",
           "styles": {
             "warm-modern": "img/saona-ct/warm-modern.jpg",
             "florida": "img/saona-ct/florida-cozy.jpg"
@@ -168,7 +240,7 @@
         {
           "id": "living",
           "label": "Living",
-          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1769500064/116/116_225071426_02.jpg",
+          "url": "img/cerva-ln/empty.jpg",
           "styles": {
             "warm-modern": "img/cerva-ln/warm-modern.jpg",
             "florida": "img/cerva-ln/florida-cozy.jpg"
@@ -192,7 +264,7 @@
         {
           "id": "living",
           "label": "Living",
-          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1787707736/116/116_225076937_05.jpg",
+          "url": "img/callista-ct/empty.jpg",
           "styles": {
             "warm-modern": "img/callista-ct/warm-modern.jpg",
             "florida": "img/callista-ct/florida-cozy.jpg"
@@ -240,7 +312,7 @@
         {
           "id": "living",
           "label": "Living",
-          "url": "https://cdn.listingphotos.sierrastatic.com/large/v1783547512/116/116_226002153_02.jpg",
+          "url": "img/41st-ave-ne/empty.jpg",
           "styles": {
             "warm-modern": "img/41st-ave-ne/warm-modern.jpg",
             "florida": "img/41st-ave-ne/florida-cozy.jpg"

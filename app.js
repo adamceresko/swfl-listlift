@@ -5,6 +5,12 @@
   var LANDOVER_STRIPE = "https://buy.stripe.com/eVqaER7SS7nR6vQ9t90RG01";
   var CHERRYSTONE_STRIPE = "https://buy.stripe.com/6oUaER7SS0Zt8DY7l10RG02";
   var GULFSHORE_STRIPE = "https://buy.stripe.com/fZu8wJ2yybE707s34L0RG03";
+  var SICILIA_STRIPE = "https://buy.stripe.com/6oUeV7ehgbE79I2fRx0RG04";
+  var WILDFLOWER_STRIPE = "https://buy.stripe.com/6oUeV73CCfUng6qaxd0RG05";
+  var SAONA_STRIPE = "https://buy.stripe.com/7sYfZba10gYrcUedJp0RG06";
+  var CERVA_STRIPE = "https://buy.stripe.com/bJe28lflkeQj2fAeNt0RG07";
+  var CALLISTA_STRIPE = "https://buy.stripe.com/9B6bIV2yyaA34nI48P0RG09";
+  var AVE41_STRIPE = "https://buy.stripe.com/bJe3cpc9823x1bwdJp0RG08";
   var DATA_URL = "data/listings.json";
   var MIXPANEL_TOKEN = "c3094cb7b0fee96f8f26ee8942b3a720";
 
@@ -156,6 +162,12 @@
     if (listing && listing.slug === "landover-203") base = LANDOVER_STRIPE;
     if (listing && listing.slug === "cherrystone-b108") base = CHERRYSTONE_STRIPE;
     if (listing && listing.slug === "gulfshore-1406") base = GULFSHORE_STRIPE;
+    if (listing && listing.slug === "sicilia-ct") base = SICILIA_STRIPE;
+    if (listing && listing.slug === "wildflower-cir") base = WILDFLOWER_STRIPE;
+    if (listing && listing.slug === "saona-ct") base = SAONA_STRIPE;
+    if (listing && listing.slug === "cerva-ln") base = CERVA_STRIPE;
+    if (listing && listing.slug === "callista-ct") base = CALLISTA_STRIPE;
+    if (listing && listing.slug === "41st-ave-ne") base = AVE41_STRIPE;
     var url = new URL(base);
     var ref = listing && listing.slug ? listing.slug : "";
     var sid = styleId === "florida" ? "florida-cozy" : styleId;
