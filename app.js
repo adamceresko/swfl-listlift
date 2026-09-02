@@ -11,6 +11,7 @@
   var CERVA_STRIPE = "https://buy.stripe.com/bJe28lflkeQj2fAeNt0RG07";
   var CALLISTA_STRIPE = "https://buy.stripe.com/9B6bIV2yyaA34nI48P0RG09";
   var AVE41_STRIPE = "https://buy.stripe.com/bJe3cpc9823x1bwdJp0RG08";
+  var PIKEWOOD_STRIPE = "https://buy.stripe.com/6oU6oB3CCgYr3jEeNt0RG0a";
   var DATA_URL = "data/listings.json";
   var MIXPANEL_TOKEN = "c3094cb7b0fee96f8f26ee8942b3a720";
 
@@ -168,6 +169,7 @@
     if (listing && listing.slug === "cerva-ln") base = CERVA_STRIPE;
     if (listing && listing.slug === "callista-ct") base = CALLISTA_STRIPE;
     if (listing && listing.slug === "41st-ave-ne") base = AVE41_STRIPE;
+    if (listing && listing.slug === "pikewood-ct") base = PIKEWOOD_STRIPE;
     var url = new URL(base);
     var ref = listing && listing.slug ? listing.slug : "";
     var sid = styleId === "florida" ? "florida-cozy" : styleId;

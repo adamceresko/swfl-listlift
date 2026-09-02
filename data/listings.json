@@ -343,6 +343,30 @@
           }
         }
       ]
+    },
+    {
+      "slug": "pikewood-ct",
+      "address": "5457 Pikewood Ct",
+      "city": "Ave Maria",
+      "state": "FL",
+      "zip": "34142",
+      "price": 599900,
+      "beds": 4,
+      "baths": 3,
+      "sqft": 2247,
+      "listing_url": "https://www.redfin.com/FL/Ave-Maria/5457-Pikewood-Ct-34142/home/194718872",
+      "agent_name": "Jan Sherbert Tanzer",
+      "photos": [
+        {
+          "id": "living",
+          "label": "Living",
+          "url": "img/pikewood-ct/empty.jpg",
+          "styles": {
+            "warm-modern": "img/pikewood-ct/warm-modern.jpg",
+            "florida": "img/pikewood-ct/florida-cozy.jpg"
+          }
+        }
+      ]
     }
   ]
 }
